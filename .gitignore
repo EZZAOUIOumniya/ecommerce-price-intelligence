@@ -5,3 +5,6 @@ logs/
 .dbt/
 venv/
 __pycache__/
+# Ignore Airflow and Postgres data
+airflow_logs/
+postgres_data/
