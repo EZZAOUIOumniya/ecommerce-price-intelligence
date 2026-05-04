@@ -1,0 +1,114 @@
+[2026-04-30T22:29:19.263+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_uno manual__2026-04-30T22:29:18.742546+00:00 [queued]>
+[2026-04-30T22:29:19.270+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_uno manual__2026-04-30T22:29:18.742546+00:00 [queued]>
+[2026-04-30T22:29:19.270+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-04-30T22:29:19.285+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): parallel_scraping.scrape_uno> on 2026-04-30 22:29:18.742546+00:00
+[2026-04-30T22:29:19.290+0000] {standard_task_runner.py:60} INFO - Started process 4586 to run task
+[2026-04-30T22:29:19.293+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'market_intelligence_platform', 'parallel_scraping.scrape_uno', 'manual__2026-04-30T22:29:18.742546+00:00', '--job-id', '151', '--raw', '--subdir', 'DAGS_FOLDER/jumia_scraper_dag.py', '--cfg-path', '/tmp/tmprf1kbdez']
+[2026-04-30T22:29:19.294+0000] {standard_task_runner.py:88} INFO - Job 151: Subtask parallel_scraping.scrape_uno
+[2026-04-30T22:29:19.339+0000] {task_command.py:423} INFO - Running <TaskInstance: market_intelligence_platform.parallel_scraping.scrape_uno manual__2026-04-30T22:29:18.742546+00:00 [running]> on host 843c5187474d
+[2026-04-30T22:29:19.422+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abdel' AIRFLOW_CTX_DAG_ID='market_intelligence_platform' AIRFLOW_CTX_TASK_ID='parallel_scraping.scrape_uno' AIRFLOW_CTX_EXECUTION_DATE='2026-04-30T22:29:18.742546+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-30T22:29:18.742546+00:00'
+[2026-04-30T22:29:19.423+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-30T22:29:19.423+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'mkdir -p /opt/***/scrapers/market_bot/data && cd /opt/***/scrapers/market_bot && export KAFKA_BOOTSTRAP_SERVERS=kafka:29092 && export KAFKA_TOPIC=market_data && python3 -m scrapy crawl uno -s LOG_LEVEL=INFO -o /opt/***/scrapers/market_bot/data/uno_2026-04-30.jsonl']
+[2026-04-30T22:29:19.434+0000] {subprocess.py:86} INFO - Output:
+[2026-04-30T22:29:19.845+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:19 [scrapy.utils.log] INFO: Scrapy 2.11.2 started (bot: market_bot)
+[2026-04-30T22:29:19.846+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:19 [scrapy.utils.log] INFO: Versions: lxml 5.1.0.0, libxml2 2.12.3, cssselect 1.2.0, parsel 1.9.1, w3lib 2.2.1, Twisted 25.5.0, Python 3.8.18 (default, Feb 13 2024, 11:06:24) - [GCC 12.2.0], pyOpenSSL 23.3.0 (OpenSSL 3.1.4 24 Oct 2023), cryptography 41.0.7, Platform Linux-6.19.11+kali-amd64-x86_64-with-glibc2.34
+[2026-04-30T22:29:19.848+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:19 [scrapy.addons] INFO: Enabled addons:
+[2026-04-30T22:29:19.848+0000] {subprocess.py:93} INFO - []
+[2026-04-30T22:29:19.856+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:19 [scrapy.extensions.telnet] INFO: Telnet Password: e6ea189bd22615e4
+[2026-04-30T22:29:19.983+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:19 [scrapy.middleware] INFO: Enabled extensions:
+[2026-04-30T22:29:19.983+0000] {subprocess.py:93} INFO - ['scrapy.extensions.corestats.CoreStats',
+[2026-04-30T22:29:19.983+0000] {subprocess.py:93} INFO -  'scrapy.extensions.telnet.TelnetConsole',
+[2026-04-30T22:29:19.983+0000] {subprocess.py:93} INFO -  'scrapy.extensions.memusage.MemoryUsage',
+[2026-04-30T22:29:19.983+0000] {subprocess.py:93} INFO -  'scrapy.extensions.closespider.CloseSpider',
+[2026-04-30T22:29:19.984+0000] {subprocess.py:93} INFO -  'scrapy.extensions.feedexport.FeedExporter',
+[2026-04-30T22:29:19.984+0000] {subprocess.py:93} INFO -  'scrapy.extensions.logstats.LogStats',
+[2026-04-30T22:29:19.984+0000] {subprocess.py:93} INFO -  'scrapy.extensions.throttle.AutoThrottle']
+[2026-04-30T22:29:19.984+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:19 [scrapy.crawler] INFO: Overridden settings:
+[2026-04-30T22:29:19.984+0000] {subprocess.py:93} INFO - {'ASYNCIO_EVENT_LOOP': 'asyncio.SelectorEventLoop',
+[2026-04-30T22:29:19.984+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_ENABLED': True,
+[2026-04-30T22:29:19.984+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_START_DELAY': 1.5,
+[2026-04-30T22:29:19.985+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_TARGET_CONCURRENCY': 2.0,
+[2026-04-30T22:29:19.985+0000] {subprocess.py:93} INFO -  'BOT_NAME': 'market_bot',
+[2026-04-30T22:29:19.985+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_ITEMCOUNT': 50000,
+[2026-04-30T22:29:19.985+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_PAGECOUNT': 5000,
+[2026-04-30T22:29:19.985+0000] {subprocess.py:93} INFO -  'CONCURRENT_REQUESTS': 1,
+[2026-04-30T22:29:19.985+0000] {subprocess.py:93} INFO -  'COOKIES_ENABLED': False,
+[2026-04-30T22:29:19.985+0000] {subprocess.py:93} INFO -  'DOWNLOAD_TIMEOUT': 90,
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'FEED_EXPORT_ENCODING': 'utf-8',
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'LOG_LEVEL': 'INFO',
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'NEWSPIDER_MODULE': 'market_bot.spiders',
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429],
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'RETRY_TIMES': 5,
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'SPIDER_MODULES': ['market_bot.spiders'],
+[2026-04-30T22:29:19.986+0000] {subprocess.py:93} INFO -  'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+[2026-04-30T22:29:19.987+0000] {subprocess.py:93} INFO -  'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+[2026-04-30T22:29:19.987+0000] {subprocess.py:93} INFO -                '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'}
+[2026-04-30T22:29:20.051+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy.middleware] INFO: Enabled downloader middlewares:
+[2026-04-30T22:29:20.052+0000] {subprocess.py:93} INFO - ['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+[2026-04-30T22:29:20.052+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+[2026-04-30T22:29:20.052+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+[2026-04-30T22:29:20.052+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.stats.DownloaderStats']
+[2026-04-30T22:29:20.053+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy.middleware] INFO: Enabled spider middlewares:
+[2026-04-30T22:29:20.054+0000] {subprocess.py:93} INFO - ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+[2026-04-30T22:29:20.054+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.referer.RefererMiddleware',
+[2026-04-30T22:29:20.054+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+[2026-04-30T22:29:20.054+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.depth.DepthMiddleware']
+[2026-04-30T22:29:20.059+0000] {subprocess.py:93} INFO - %4|1777588160.059|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property api.version.request is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Request broker's supported API versions to adjust functionality to available protocol features. If set to false, or the ApiVersionRequest fails, the fallback version `broker.version.fallback` will be used. **NOTE**: Depends on broker version >=0.10.0. If the request is not supported by (an older) broker the `broker.version.fallback` fallback is used.
+[2026-04-30T22:29:20.060+0000] {subprocess.py:93} INFO - %4|1777588160.059|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property broker.version.fallback is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Older broker versions (before 0.10.0) provide no way for a client to query for supported protocol features (ApiVersionRequest, see `api.version.request`) making it impossible for the client to know what features it may use. As a workaround a user may set this property to the expected broker version and the client will automatically adjust its feature set accordingly if the ApiVersionRequest fails (or is disabled). The fallback broker version will be used for `api.version.fallback.ms`. Valid values are: 0.9.0, 0.8.2, 0.8.1, 0.8.0. Any other value >= 0.10, such as 0.10.2.1, enables ApiVersionRequests.
+[2026-04-30T22:29:20.060+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy.middleware] INFO: Enabled item pipelines:
+[2026-04-30T22:29:20.060+0000] {subprocess.py:93} INFO - ['market_bot.pipelines.KafkaPipeline']
+[2026-04-30T22:29:20.060+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy.core.engine] INFO: Spider opened
+[2026-04-30T22:29:20.065+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:29:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6026
+[2026-04-30T22:29:20.068+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy-playwright] INFO: Starting download handler
+[2026-04-30T22:29:20.068+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:20 [scrapy-playwright] INFO: Starting download handler
+[2026-04-30T22:29:25.072+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:25 [scrapy-playwright] INFO: Launching browser chromium
+[2026-04-30T22:29:25.153+0000] {subprocess.py:93} INFO - 2026-04-30 22:29:25 [scrapy-playwright] INFO: Browser chromium launched
+[2026-04-30T22:30:20.067+0000] {subprocess.py:93} INFO - 2026-04-30 22:30:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 2 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:31:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:31:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:32:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:32:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:33:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:33:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:34:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:34:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:35:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:35:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:36:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:36:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:37:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:37:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:38:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:38:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:39:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:39:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:40:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:40:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:41:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:41:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:42:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:42:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:43:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:43:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:44:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:44:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:45:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:45:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:46:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:46:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:47:20.067+0000] {subprocess.py:93} INFO - 2026-04-30 22:47:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:48:20.067+0000] {subprocess.py:93} INFO - 2026-04-30 22:48:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:49:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:49:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:50:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:50:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:51:20.066+0000] {subprocess.py:93} INFO - 2026-04-30 22:51:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:52:20.067+0000] {subprocess.py:93} INFO - 2026-04-30 22:52:20 [scrapy.extensions.logstats] INFO: Crawled 2 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-30T22:53:11.494+0000] {local_task_job_runner.py:121} ERROR - Received SIGTERM. Terminating subprocesses
+[2026-04-30T22:53:11.497+0000] {process_utils.py:131} INFO - Sending 15 to group 4586. PIDs of all processes in the group: [4599, 4663, 4671, 4765, 4773, 4774, 4874, 4954, 5167, 4868, 4586]
+[2026-04-30T22:53:11.498+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 4586
+[2026-04-30T22:53:11.498+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-04-30T22:53:11.498+0000] {subprocess.py:104} INFO - Sending SIGTERM signal to process group
+[2026-04-30T22:53:11.529+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4663, status='terminated', started='22:29:19') (4663) terminated with exit code None
+[2026-04-30T22:53:11.544+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=5167, status='terminated', started='22:29:30') (5167) terminated with exit code None
+[2026-04-30T22:53:11.642+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4954, status='terminated', started='22:29:25') (4954) terminated with exit code None
+[2026-04-30T22:53:11.736+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4765, status='terminated', started='22:29:24') (4765) terminated with exit code None
+[2026-04-30T22:53:11.737+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4874, status='terminated', started='22:29:24') (4874) terminated with exit code None
+[2026-04-30T22:53:11.737+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4773, status='terminated', started='22:29:24') (4773) terminated with exit code None
+[2026-04-30T22:53:11.830+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4774, status='terminated', started='22:29:24') (4774) terminated with exit code None
+[2026-04-30T22:53:11.830+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4868, status='terminated', started='22:29:24') (4868) terminated with exit code None
+[2026-04-30T22:53:12.379+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 151 for task parallel_scraping.scrape_uno ((psycopg2.OperationalError) could not translate host name "postgres" to address: Name or service not known
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8); 4586)
+[2026-04-30T22:53:12.576+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=4586, status='terminated', exitcode=1, started='22:29:19') (4586) terminated with exit code 1

@@ -1,0 +1,142 @@
+[2026-05-02T20:10:53.397+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_uno manual__2026-05-02T20:10:52.296245+00:00 [queued]>
+[2026-05-02T20:10:53.407+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_uno manual__2026-05-02T20:10:52.296245+00:00 [queued]>
+[2026-05-02T20:10:53.407+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-05-02T20:10:53.434+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): parallel_scraping.scrape_uno> on 2026-05-02 20:10:52.296245+00:00
+[2026-05-02T20:10:53.441+0000] {standard_task_runner.py:60} INFO - Started process 24486 to run task
+[2026-05-02T20:10:53.447+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'market_intelligence_platform', 'parallel_scraping.scrape_uno', 'manual__2026-05-02T20:10:52.296245+00:00', '--job-id', '70', '--raw', '--subdir', 'DAGS_FOLDER/jumia_scraper_dag.py', '--cfg-path', '/tmp/tmp32o9ydvz']
+[2026-05-02T20:10:53.449+0000] {standard_task_runner.py:88} INFO - Job 70: Subtask parallel_scraping.scrape_uno
+[2026-05-02T20:10:53.519+0000] {task_command.py:423} INFO - Running <TaskInstance: market_intelligence_platform.parallel_scraping.scrape_uno manual__2026-05-02T20:10:52.296245+00:00 [running]> on host c1627dbb6835
+[2026-05-02T20:10:53.663+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abdel' AIRFLOW_CTX_DAG_ID='market_intelligence_platform' AIRFLOW_CTX_TASK_ID='parallel_scraping.scrape_uno' AIRFLOW_CTX_EXECUTION_DATE='2026-05-02T20:10:52.296245+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-02T20:10:52.296245+00:00'
+[2026-05-02T20:10:53.664+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-02T20:10:53.665+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'mkdir -p /opt/***/scrapers/market_bot/data && cd /opt/***/scrapers/market_bot && python3 -m scrapy crawl uno -s LOG_LEVEL=INFO -o /opt/***/scrapers/market_bot/data/uno_2026-05-02.jsonl']
+[2026-05-02T20:10:53.688+0000] {subprocess.py:86} INFO - Output:
+[2026-05-02T20:10:54.288+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.utils.log] INFO: Scrapy 2.11.2 started (bot: market_bot)
+[2026-05-02T20:10:54.288+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.utils.log] INFO: Versions: lxml 5.1.0.0, libxml2 2.12.3, cssselect 1.2.0, parsel 1.9.1, w3lib 2.2.1, Twisted 25.5.0, Python 3.8.18 (default, Feb 13 2024, 11:06:24) - [GCC 12.2.0], pyOpenSSL 23.3.0 (OpenSSL 3.1.4 24 Oct 2023), cryptography 41.0.7, Platform Linux-6.19.11+kali-amd64-x86_64-with-glibc2.34
+[2026-05-02T20:10:54.291+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.addons] INFO: Enabled addons:
+[2026-05-02T20:10:54.291+0000] {subprocess.py:93} INFO - []
+[2026-05-02T20:10:54.299+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.extensions.telnet] INFO: Telnet Password: e21008b7209ac451
+[2026-05-02T20:10:54.447+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.middleware] INFO: Enabled extensions:
+[2026-05-02T20:10:54.447+0000] {subprocess.py:93} INFO - ['scrapy.extensions.corestats.CoreStats',
+[2026-05-02T20:10:54.447+0000] {subprocess.py:93} INFO -  'scrapy.extensions.telnet.TelnetConsole',
+[2026-05-02T20:10:54.448+0000] {subprocess.py:93} INFO -  'scrapy.extensions.memusage.MemoryUsage',
+[2026-05-02T20:10:54.448+0000] {subprocess.py:93} INFO -  'scrapy.extensions.closespider.CloseSpider',
+[2026-05-02T20:10:54.448+0000] {subprocess.py:93} INFO -  'scrapy.extensions.feedexport.FeedExporter',
+[2026-05-02T20:10:54.448+0000] {subprocess.py:93} INFO -  'scrapy.extensions.logstats.LogStats',
+[2026-05-02T20:10:54.448+0000] {subprocess.py:93} INFO -  'scrapy.extensions.throttle.AutoThrottle']
+[2026-05-02T20:10:54.448+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.crawler] INFO: Overridden settings:
+[2026-05-02T20:10:54.448+0000] {subprocess.py:93} INFO - {'ASYNCIO_EVENT_LOOP': 'asyncio.SelectorEventLoop',
+[2026-05-02T20:10:54.449+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_ENABLED': True,
+[2026-05-02T20:10:54.449+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_START_DELAY': 1.5,
+[2026-05-02T20:10:54.449+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_TARGET_CONCURRENCY': 2.0,
+[2026-05-02T20:10:54.449+0000] {subprocess.py:93} INFO -  'BOT_NAME': 'market_bot',
+[2026-05-02T20:10:54.449+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_ITEMCOUNT': 50000,
+[2026-05-02T20:10:54.449+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_PAGECOUNT': 5000,
+[2026-05-02T20:10:54.450+0000] {subprocess.py:93} INFO -  'CONCURRENT_REQUESTS': 1,
+[2026-05-02T20:10:54.450+0000] {subprocess.py:93} INFO -  'COOKIES_ENABLED': False,
+[2026-05-02T20:10:54.450+0000] {subprocess.py:93} INFO -  'DOWNLOAD_TIMEOUT': 90,
+[2026-05-02T20:10:54.450+0000] {subprocess.py:93} INFO -  'FEED_EXPORT_ENCODING': 'utf-8',
+[2026-05-02T20:10:54.450+0000] {subprocess.py:93} INFO -  'LOG_LEVEL': 'INFO',
+[2026-05-02T20:10:54.450+0000] {subprocess.py:93} INFO -  'NEWSPIDER_MODULE': 'market_bot.spiders',
+[2026-05-02T20:10:54.450+0000] {subprocess.py:93} INFO -  'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+[2026-05-02T20:10:54.451+0000] {subprocess.py:93} INFO -  'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429],
+[2026-05-02T20:10:54.451+0000] {subprocess.py:93} INFO -  'RETRY_TIMES': 5,
+[2026-05-02T20:10:54.451+0000] {subprocess.py:93} INFO -  'SPIDER_MODULES': ['market_bot.spiders'],
+[2026-05-02T20:10:54.451+0000] {subprocess.py:93} INFO -  'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+[2026-05-02T20:10:54.451+0000] {subprocess.py:93} INFO -  'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+[2026-05-02T20:10:54.451+0000] {subprocess.py:93} INFO -                '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'}
+[2026-05-02T20:10:54.534+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.middleware] INFO: Enabled downloader middlewares:
+[2026-05-02T20:10:54.534+0000] {subprocess.py:93} INFO - ['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+[2026-05-02T20:10:54.535+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+[2026-05-02T20:10:54.535+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+[2026-05-02T20:10:54.535+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+[2026-05-02T20:10:54.535+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+[2026-05-02T20:10:54.535+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+[2026-05-02T20:10:54.535+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+[2026-05-02T20:10:54.536+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+[2026-05-02T20:10:54.536+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+[2026-05-02T20:10:54.536+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+[2026-05-02T20:10:54.536+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.stats.DownloaderStats']
+[2026-05-02T20:10:54.536+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.middleware] INFO: Enabled spider middlewares:
+[2026-05-02T20:10:54.536+0000] {subprocess.py:93} INFO - ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+[2026-05-02T20:10:54.536+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.referer.RefererMiddleware',
+[2026-05-02T20:10:54.537+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+[2026-05-02T20:10:54.537+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.depth.DepthMiddleware']
+[2026-05-02T20:10:54.544+0000] {subprocess.py:93} INFO - %4|1777752654.544|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property api.version.request is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Request broker's supported API versions to adjust functionality to available protocol features. If set to false, or the ApiVersionRequest fails, the fallback version `broker.version.fallback` will be used. **NOTE**: Depends on broker version >=0.10.0. If the request is not supported by (an older) broker the `broker.version.fallback` fallback is used.
+[2026-05-02T20:10:54.545+0000] {subprocess.py:93} INFO - %4|1777752654.544|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property broker.version.fallback is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Older broker versions (before 0.10.0) provide no way for a client to query for supported protocol features (ApiVersionRequest, see `api.version.request`) making it impossible for the client to know what features it may use. As a workaround a user may set this property to the expected broker version and the client will automatically adjust its feature set accordingly if the ApiVersionRequest fails (or is disabled). The fallback broker version will be used for `api.version.fallback.ms`. Valid values are: 0.9.0, 0.8.2, 0.8.1, 0.8.0. Any other value >= 0.10, such as 0.10.2.1, enables ApiVersionRequests.
+[2026-05-02T20:10:54.545+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.middleware] INFO: Enabled item pipelines:
+[2026-05-02T20:10:54.545+0000] {subprocess.py:93} INFO - ['market_bot.pipelines.KafkaPipeline']
+[2026-05-02T20:10:54.545+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.core.engine] INFO: Spider opened
+[2026-05-02T20:10:54.552+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-05-02T20:10:54.554+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6035
+[2026-05-02T20:10:54.555+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy-playwright] INFO: Starting download handler
+[2026-05-02T20:10:54.556+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:54 [scrapy-playwright] INFO: Starting download handler
+[2026-05-02T20:10:59.560+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:59 [scrapy-playwright] INFO: Launching browser chromium
+[2026-05-02T20:10:59.731+0000] {subprocess.py:93} INFO - 2026-05-02 20:10:59 [scrapy-playwright] INFO: Browser chromium launched
+[2026-05-02T20:11:07.899+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:07 [uno] WARNING: ⚠️ Aucun produit trouvé sur https://uno.ma/mac-maroc
+[2026-05-02T20:11:15.067+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:15 [uno] WARNING: ⚠️ Aucun produit trouvé sur https://uno.ma/iphone-maroc
+[2026-05-02T20:11:22.375+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [uno] WARNING: ⚠️ Aucun produit trouvé sur https://uno.ma/ipad-maroc
+[2026-05-02T20:11:22.379+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [scrapy.core.engine] INFO: Closing spider (finished)
+[2026-05-02T20:11:22.381+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [uno] INFO: Finalizing Kafka: 0 items produced. Flushing...
+[2026-05-02T20:11:22.382+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [uno] INFO: 🚀 Tous les messages ont été envoyés avec succès.
+[2026-05-02T20:11:22.382+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [scrapy.extensions.feedexport] INFO: Stored jsonl feed (0 items) in: /opt/***/scrapers/market_bot/data/uno_2026-05-02.jsonl
+[2026-05-02T20:11:22.385+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+[2026-05-02T20:11:22.385+0000] {subprocess.py:93} INFO - {'downloader/request_bytes': 880,
+[2026-05-02T20:11:22.385+0000] {subprocess.py:93} INFO -  'downloader/request_count': 3,
+[2026-05-02T20:11:22.386+0000] {subprocess.py:93} INFO -  'downloader/request_method_count/GET': 3,
+[2026-05-02T20:11:22.386+0000] {subprocess.py:93} INFO -  'downloader/response_bytes': 603679,
+[2026-05-02T20:11:22.387+0000] {subprocess.py:93} INFO -  'downloader/response_count': 3,
+[2026-05-02T20:11:22.387+0000] {subprocess.py:93} INFO -  'downloader/response_status_count/200': 3,
+[2026-05-02T20:11:22.387+0000] {subprocess.py:93} INFO -  'elapsed_time_seconds': 27.82855,
+[2026-05-02T20:11:22.387+0000] {subprocess.py:93} INFO -  'feedexport/success_count/FileFeedStorage': 1,
+[2026-05-02T20:11:22.389+0000] {subprocess.py:93} INFO -  'finish_reason': 'finished',
+[2026-05-02T20:11:22.390+0000] {subprocess.py:93} INFO -  'finish_time': datetime.datetime(2026, 5, 2, 20, 11, 22, 380312, tzinfo=datetime.timezone.utc),
+[2026-05-02T20:11:22.390+0000] {subprocess.py:93} INFO -  'log_count/INFO': 17,
+[2026-05-02T20:11:22.390+0000] {subprocess.py:93} INFO -  'log_count/WARNING': 3,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'memusage/max': 155226112,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'memusage/startup': 155226112,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'playwright/browser_count': 1,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'playwright/context_count': 1,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'playwright/context_count/max_concurrent': 1,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'playwright/context_count/persistent/False': 1,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'playwright/context_count/remote/False': 1,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'playwright/page_count': 3,
+[2026-05-02T20:11:22.391+0000] {subprocess.py:93} INFO -  'playwright/page_count/max_concurrent': 3,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count': 991,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/method/GET': 963,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/method/POST': 28,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/navigation': 5,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/document': 5,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/fetch': 6,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/font': 43,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/image': 60,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/other': 4,
+[2026-05-02T20:11:22.392+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/ping': 15,
+[2026-05-02T20:11:22.393+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/script': 747,
+[2026-05-02T20:11:22.393+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/stylesheet': 65,
+[2026-05-02T20:11:22.393+0000] {subprocess.py:93} INFO -  'playwright/request_count/resource_type/xhr': 46,
+[2026-05-02T20:11:22.393+0000] {subprocess.py:93} INFO -  'playwright/response_count': 991,
+[2026-05-02T20:11:22.393+0000] {subprocess.py:93} INFO -  'playwright/response_count/method/GET': 963,
+[2026-05-02T20:11:22.393+0000] {subprocess.py:93} INFO -  'playwright/response_count/method/POST': 28,
+[2026-05-02T20:11:22.394+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/document': 5,
+[2026-05-02T20:11:22.394+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/fetch': 6,
+[2026-05-02T20:11:22.394+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/font': 43,
+[2026-05-02T20:11:22.396+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/image': 60,
+[2026-05-02T20:11:22.396+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/other': 4,
+[2026-05-02T20:11:22.396+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/ping': 15,
+[2026-05-02T20:11:22.396+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/script': 747,
+[2026-05-02T20:11:22.397+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/stylesheet': 65,
+[2026-05-02T20:11:22.397+0000] {subprocess.py:93} INFO -  'playwright/response_count/resource_type/xhr': 46,
+[2026-05-02T20:11:22.397+0000] {subprocess.py:93} INFO -  'response_received_count': 3,
+[2026-05-02T20:11:22.397+0000] {subprocess.py:93} INFO -  'scheduler/dequeued': 3,
+[2026-05-02T20:11:22.397+0000] {subprocess.py:93} INFO -  'scheduler/dequeued/memory': 3,
+[2026-05-02T20:11:22.397+0000] {subprocess.py:93} INFO -  'scheduler/enqueued': 3,
+[2026-05-02T20:11:22.397+0000] {subprocess.py:93} INFO -  'scheduler/enqueued/memory': 3,
+[2026-05-02T20:11:22.398+0000] {subprocess.py:93} INFO -  'start_time': datetime.datetime(2026, 5, 2, 20, 10, 54, 551762, tzinfo=datetime.timezone.utc)}
+[2026-05-02T20:11:22.398+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [scrapy.core.engine] INFO: Spider closed (finished)
+[2026-05-02T20:11:22.398+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [scrapy-playwright] INFO: Closing download handler
+[2026-05-02T20:11:22.398+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [scrapy-playwright] INFO: Closing download handler
+[2026-05-02T20:11:22.447+0000] {subprocess.py:93} INFO - 2026-05-02 20:11:22 [scrapy-playwright] INFO: Closing browser
+[2026-05-02T20:11:23.007+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-05-02T20:11:23.068+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=market_intelligence_platform, task_id=parallel_scraping.scrape_uno, execution_date=20260502T201052, start_date=20260502T201053, end_date=20260502T201123
+[2026-05-02T20:11:23.109+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-05-02T20:11:23.135+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

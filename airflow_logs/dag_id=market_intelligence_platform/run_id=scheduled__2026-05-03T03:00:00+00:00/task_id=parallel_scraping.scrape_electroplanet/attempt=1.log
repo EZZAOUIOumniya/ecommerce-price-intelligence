@@ -1,0 +1,663 @@
+[2026-05-04T03:00:00.612+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_electroplanet scheduled__2026-05-03T03:00:00+00:00 [queued]>
+[2026-05-04T03:00:00.620+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_electroplanet scheduled__2026-05-03T03:00:00+00:00 [queued]>
+[2026-05-04T03:00:00.620+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-05-04T03:00:00.630+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): parallel_scraping.scrape_electroplanet> on 2026-05-03 03:00:00+00:00
+[2026-05-04T03:00:00.634+0000] {standard_task_runner.py:60} INFO - Started process 22511 to run task
+[2026-05-04T03:00:00.636+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'market_intelligence_platform', 'parallel_scraping.scrape_electroplanet', 'scheduled__2026-05-03T03:00:00+00:00', '--job-id', '227', '--raw', '--subdir', 'DAGS_FOLDER/jumia_scraper_dag.py', '--cfg-path', '/tmp/tmpk7jmbs9m']
+[2026-05-04T03:00:00.637+0000] {standard_task_runner.py:88} INFO - Job 227: Subtask parallel_scraping.scrape_electroplanet
+[2026-05-04T03:00:00.674+0000] {task_command.py:423} INFO - Running <TaskInstance: market_intelligence_platform.parallel_scraping.scrape_electroplanet scheduled__2026-05-03T03:00:00+00:00 [running]> on host c1627dbb6835
+[2026-05-04T03:00:00.751+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abdel' AIRFLOW_CTX_DAG_ID='market_intelligence_platform' AIRFLOW_CTX_TASK_ID='parallel_scraping.scrape_electroplanet' AIRFLOW_CTX_EXECUTION_DATE='2026-05-03T03:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-03T03:00:00+00:00'
+[2026-05-04T03:00:00.752+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-04T03:00:00.753+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'mkdir -p /opt/***/scrapers/market_bot/data && cd /opt/***/scrapers/market_bot && python3 -m scrapy crawl electroplanet -s LOG_LEVEL=INFO -o /opt/***/scrapers/market_bot/data/electroplanet_2026-05-03.jsonl']
+[2026-05-04T03:00:00.764+0000] {subprocess.py:86} INFO - Output:
+[2026-05-04T03:00:01.174+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.utils.log] INFO: Scrapy 2.11.2 started (bot: market_bot)
+[2026-05-04T03:00:01.175+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.utils.log] INFO: Versions: lxml 5.1.0.0, libxml2 2.12.3, cssselect 1.2.0, parsel 1.9.1, w3lib 2.2.1, Twisted 25.5.0, Python 3.8.18 (default, Feb 13 2024, 11:06:24) - [GCC 12.2.0], pyOpenSSL 23.3.0 (OpenSSL 3.1.4 24 Oct 2023), cryptography 41.0.7, Platform Linux-6.19.11+kali-amd64-x86_64-with-glibc2.34
+[2026-05-04T03:00:01.177+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.addons] INFO: Enabled addons:
+[2026-05-04T03:00:01.177+0000] {subprocess.py:93} INFO - []
+[2026-05-04T03:00:01.185+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.extensions.telnet] INFO: Telnet Password: 14876554fdecfef9
+[2026-05-04T03:00:01.312+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.middleware] INFO: Enabled extensions:
+[2026-05-04T03:00:01.312+0000] {subprocess.py:93} INFO - ['scrapy.extensions.corestats.CoreStats',
+[2026-05-04T03:00:01.312+0000] {subprocess.py:93} INFO -  'scrapy.extensions.telnet.TelnetConsole',
+[2026-05-04T03:00:01.313+0000] {subprocess.py:93} INFO -  'scrapy.extensions.memusage.MemoryUsage',
+[2026-05-04T03:00:01.313+0000] {subprocess.py:93} INFO -  'scrapy.extensions.closespider.CloseSpider',
+[2026-05-04T03:00:01.313+0000] {subprocess.py:93} INFO -  'scrapy.extensions.feedexport.FeedExporter',
+[2026-05-04T03:00:01.313+0000] {subprocess.py:93} INFO -  'scrapy.extensions.logstats.LogStats']
+[2026-05-04T03:00:01.313+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.crawler] INFO: Overridden settings:
+[2026-05-04T03:00:01.313+0000] {subprocess.py:93} INFO - {'BOT_NAME': 'market_bot',
+[2026-05-04T03:00:01.313+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_ITEMCOUNT': 50000,
+[2026-05-04T03:00:01.314+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_PAGECOUNT': 5000,
+[2026-05-04T03:00:01.314+0000] {subprocess.py:93} INFO -  'DOWNLOAD_TIMEOUT': 90,
+[2026-05-04T03:00:01.314+0000] {subprocess.py:93} INFO -  'FEED_EXPORT_ENCODING': 'utf-8',
+[2026-05-04T03:00:01.314+0000] {subprocess.py:93} INFO -  'LOG_LEVEL': 'INFO',
+[2026-05-04T03:00:01.314+0000] {subprocess.py:93} INFO -  'NEWSPIDER_MODULE': 'market_bot.spiders',
+[2026-05-04T03:00:01.314+0000] {subprocess.py:93} INFO -  'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+[2026-05-04T03:00:01.314+0000] {subprocess.py:93} INFO -  'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429],
+[2026-05-04T03:00:01.315+0000] {subprocess.py:93} INFO -  'RETRY_TIMES': 5,
+[2026-05-04T03:00:01.315+0000] {subprocess.py:93} INFO -  'SPIDER_MODULES': ['market_bot.spiders'],
+[2026-05-04T03:00:01.315+0000] {subprocess.py:93} INFO -  'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+[2026-05-04T03:00:01.315+0000] {subprocess.py:93} INFO -  'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+[2026-05-04T03:00:01.315+0000] {subprocess.py:93} INFO -                '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'}
+[2026-05-04T03:00:01.377+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.middleware] INFO: Enabled downloader middlewares:
+[2026-05-04T03:00:01.378+0000] {subprocess.py:93} INFO - ['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+[2026-05-04T03:00:01.378+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+[2026-05-04T03:00:01.378+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+[2026-05-04T03:00:01.378+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+[2026-05-04T03:00:01.379+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.stats.DownloaderStats']
+[2026-05-04T03:00:01.380+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.middleware] INFO: Enabled spider middlewares:
+[2026-05-04T03:00:01.380+0000] {subprocess.py:93} INFO - ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+[2026-05-04T03:00:01.380+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.referer.RefererMiddleware',
+[2026-05-04T03:00:01.380+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+[2026-05-04T03:00:01.380+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.depth.DepthMiddleware']
+[2026-05-04T03:00:01.384+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.middleware] INFO: Enabled item pipelines:
+[2026-05-04T03:00:01.384+0000] {subprocess.py:93} INFO - ['market_bot.pipelines.KafkaPipeline']
+[2026-05-04T03:00:01.385+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.core.engine] INFO: Spider opened
+[2026-05-04T03:00:01.389+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-05-04T03:00:01.390+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6026
+[2026-05-04T03:00:01.391+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Starting download handler
+[2026-05-04T03:00:01.391+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Starting download handler
+[2026-05-04T03:00:01.619+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Launching 1 startup context(s)
+[2026-05-04T03:00:01.619+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Launching browser chromium
+[2026-05-04T03:00:01.654+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Launching 1 startup context(s)
+[2026-05-04T03:00:01.656+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Launching browser chromium
+[2026-05-04T03:00:01.753+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Browser chromium launched
+[2026-05-04T03:00:01.775+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Startup context(s) launched
+[2026-05-04T03:00:01.797+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Browser chromium launched
+[2026-05-04T03:00:01.804+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:01 [scrapy-playwright] INFO: Startup context(s) launched
+[2026-05-04T03:00:07.022+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22013', 'site': 'electroplanet', 'category': 'moniteur', 'name': 'MONITEUR 24"TUF GAMNG VG249QL ASUS', 'price': 2299, 'url': 'https://www.electroplanet.ma/p3045437-moniteur-24-tuf-gamng-vg249ql-asus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.023+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.023+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.023+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.023+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.023+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.023+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.323+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24848', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO 256GB COSMIC ORANGE MG8H4AF/A APPLE', 'price': 18599, 'url': 'https://www.electroplanet.ma/p3106680-iphone-17-pro-256gb-cosmic-orange-mg8h4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.323+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.324+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.324+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.324+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.324+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.325+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.325+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24857', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO MAX 256GB ORANGE MFYN4AF/A APPLE', 'price': 20299, 'url': 'https://www.electroplanet.ma/p3106689-iphone-17-pro-max-256gb-orange-mfyn4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.325+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.325+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.325+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24859', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO MAX 256GB SILVER MFYM4AF/A APPLE', 'price': 20299, 'url': 'https://www.electroplanet.ma/p3106691-iphone-17-pro-max-256gb-silver-mfym4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.326+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.327+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.327+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.327+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24858', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO MAX 256GB DEEP BLUE MFYP4AF/A APPLE', 'price': 20299, 'url': 'https://www.electroplanet.ma/p3106690-iphone-17-pro-max-256gb-deep-blue-mfyp4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.327+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.327+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.327+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.327+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '25178', 'site': 'electroplanet', 'category': 'laptop', 'name': 'MACBOOK PRO 14 M5 16GB, 512GB SBLACK MDE04 APPLE', 'price': 20590, 'url': 'https://www.electroplanet.ma/p3110077-macbook-pro-14-m5-16gb-512gb-sblack-mde04-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.328+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '18963', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 15', 'price': 11999, 'url': 'https://www.electroplanet.ma/pc2994176-iphone-15.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21435', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16', 'price': 13399, 'url': 'https://www.electroplanet.ma/pc3051123-iphone-16.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.329+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '18079', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 15', 'price': 11999, 'url': 'https://www.electroplanet.ma/p2994176-iphone-15-128gb-black-mtp03.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21062', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PRO', 'price': 24499, 'url': 'https://www.electroplanet.ma/pc3051153-iphone-16-pro.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.330+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24627', 'site': 'electroplanet', 'category': 'tablet', 'name': '11-INCH IPAD WI-FI 128GB - BLUE MD4A4', 'price': 4999, 'url': 'https://www.electroplanet.ma/p3083744-ipad-wi-fi-128gb-blue-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '18967', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 15 PLUS', 'price': 13399, 'url': 'https://www.electroplanet.ma/pc2994181-iphone-15-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.331+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '23077', 'site': 'electroplanet', 'category': 'laptop', 'name': 'MACBOOK AIR M4 13 POUCES', 'price': 12999, 'url': 'https://www.electroplanet.ma/pc3081712-macbook-air-m4-13-pouces.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24862', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO MAX', 'price': 34999, 'url': 'https://www.electroplanet.ma/pc3106686-iphone-17-pro-max.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.332+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24821', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO MAX 512GB DEEP BLUE MFYU4AF/A APPLE', 'price': 24299, 'url': 'https://www.electroplanet.ma/p3106696-iphone-17-pro-max-512gb-deep-blue-mfyu4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21071', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PRO MAX', 'price': 25999, 'url': 'https://www.electroplanet.ma/pc3051177-iphone-16-pro-max.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.333+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '16552', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 14', 'price': 10999, 'url': 'https://www.electroplanet.ma/pc2966319-iphone-14.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '20351', 'site': 'electroplanet', 'category': 'laptop', 'name': 'MACBOOK PRO MYDA2F 8CORCPU/GPU 256G13¨SLV APPLE', 'price': 18599, 'url': 'https://www.electroplanet.ma/p2820257-macbook-pro-myda2f-8corcpu-gpu-256g13-slv-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.334+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21983', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD PRO 13P WIFI 256G NOIR (DÉMO)APPLE', 'price': 17399, 'url': 'https://www.electroplanet.ma/p3038341-ipad-pro-13p-wifi-256g-noir-demo-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24823', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE AIR 256GB SPACE BLACK MG2L4AF/A APPLE', 'price': 17199, 'url': 'https://www.electroplanet.ma/p3106698-iphone-air-256gb-space-black-mg2l4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.335+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21041', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PLUS', 'price': 17359, 'url': 'https://www.electroplanet.ma/pc3051138-iphone-16-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24849', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO 256GB DEEP BLUE MG8J4AF/A APPLE', 'price': 18599, 'url': 'https://www.electroplanet.ma/p3106681-iphone-17-pro-256gb-deep-blue-mg8j4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.336+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24822', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO MAX 512GB ORANGE MFYT4AF/A APPLE', 'price': 24299, 'url': 'https://www.electroplanet.ma/p3106695-iphone-17-pro-max-512gb-orange-mfyt4af-a-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21346', 'site': 'electroplanet', 'category': 'tablet', 'name': '11-INCH IPAD PRO 4TH WIFI 1TB SG MNXK3 APPLE', 'price': 22000, 'url': 'https://www.electroplanet.ma/p3051742-11-inch-ipad-pro-4th-wifi-1tb-sg-mnxk3-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.337+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21214', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD AIR 11 P WIFI 128G VIOLET (DÉMO) APPLE', 'price': 6075, 'url': 'https://www.electroplanet.ma/p3038343-ipad-air-11-p-wifi-128g-violet-demo-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '25177', 'site': 'electroplanet', 'category': 'laptop', 'name': 'MACBOOK PRO 14 M5 16GB, 1TB SILVER MDE54 APPLE', 'price': 23849, 'url': 'https://www.electroplanet.ma/p3110076-macbook-pro-14-m5-16gb-1tb-silver-mde54-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.338+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '25020', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 17 PRO', 'price': 18599, 'url': 'https://www.electroplanet.ma/pc3106677-iphone-17-pro.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24003', 'site': 'electroplanet', 'category': 'tablet', 'name': 'iPAD AIR', 'price': 13429, 'url': 'https://www.electroplanet.ma/pc3086930-ipad-air.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.339+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22231', 'site': 'electroplanet', 'category': 'laptop', 'name': 'MACBOOK PRO M4 14 POUCES', 'price': 27199, 'url': 'https://www.electroplanet.ma/pc3063316-macbook-pro-m4-14-pouces.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22951', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXYA26 5G 6G128GB PEACH PINK SAMSUNG', 'price': 2749, 'url': 'https://www.electroplanet.ma/smartphone-tablette-gps/p3080793.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24678', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXY A07 4+128GB GREEN SAMSUNG', 'price': 1490, 'url': 'https://www.electroplanet.ma/p3102629-smartphone-galaxy-a07-4-128gb-green-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.340+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22944', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXYA56 5G 8G256GB GRAPHITE SAMSUNG', 'price': 5249, 'url': 'https://www.electroplanet.ma/p3080814-smartphone-galaxya56-5g-8g256gb-graphite-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24745', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXY A17 6+128GB BLACK SAMSUNG', 'price': 1990, 'url': 'https://www.electroplanet.ma/p3104442-smartphone-galaxy-a17-6-128gb-black-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.341+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24681', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXY A07 4+64GB LIGHT VIOLET SAMSUNG', 'price': 1249, 'url': 'https://www.electroplanet.ma/p3102625-smartphone-galaxy-a07-4-64gb-light-violet-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24762', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXY A17 8+256GB LIGHT BLUE SAMSUNG', 'price': 2490, 'url': 'https://www.electroplanet.ma/p3104446-smartphone-galaxy-a17-8-256gb-light-blue-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.342+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '19004', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE A35 8+256GB AWESOME LILAC SAMSUNG', 'price': 4749, 'url': 'https://www.electroplanet.ma/p3028864-smartphone-a35-8-256gb-awesome-lilac-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24679', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXY A07 4+64GB BLACK SAMSUNG', 'price': 1249, 'url': 'https://www.electroplanet.ma/p3102627-smartphone-galaxy-a07-4-64gb-black-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.343+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24680', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXY A07 4+64GB GREEN SAMSUNG', 'price': 1249, 'url': 'https://www.electroplanet.ma/p3102626-smartphone-galaxy-a07-4-64gb-green-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22949', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'SMARTPHONE GALAXYA26 5G 8G256GB BLACK SAMSUNG', 'price': 3249, 'url': 'https://www.electroplanet.ma/p3080798-smartphone-galaxya26-5g-8g256gb-black-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.344+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '18519', 'site': 'electroplanet', 'category': 'moniteur', 'name': 'MONITEUR IT 19" LS19F355 SAMSUNG', 'price': 1059, 'url': 'https://www.electroplanet.ma/p1382386-moniteur-it-19-ls19f355-samsung.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21026', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16', 'price': 15259, 'url': 'https://www.electroplanet.ma/p3051128-iphone-16-256gb-black-myee3-apple.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.345+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '20350', 'site': 'electroplanet', 'category': 'laptop', 'name': 'MACBOOK PRO MYD82F 8CORCPU/GPU 256G 13¨SP GY APPL', 'price': 18599, 'url': 'https://www.electroplanet.ma/p2820258-macbook-pro-myd82f-8corcpu-gpu-256g-13-sp-gy-appl.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.346+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '20349', 'site': 'electroplanet', 'category': 'laptop', 'name': "MACBOOK AIR MGNE3 8'CPU 8' GPU 512G 13¨GLD APPL", 'price': 16999, 'url': 'https://www.electroplanet.ma/p2820254-macbook-air-mgne3-8-cpu-8-gpu-512g-13-gld-appl.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '20348', 'site': 'electroplanet', 'category': 'laptop', 'name': "MACBOOK AIR MGN73 8'CPU 8'GPU 512G 13¨SP GY APP", 'price': 16999, 'url': 'https://www.electroplanet.ma/p2820256-macbook-air-mgn73-8-cpu-8-gpu-512g-13-sp-gy-app.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.347+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22113', 'site': 'electroplanet', 'category': 'tablet', 'name': '1-INCH IPAD PRO WIFI CEL 1TB SPACE BLACK MVW53', 'price': 25699, 'url': 'https://www.electroplanet.ma/p3052024-1-inch-ipad-pro-wifi-cel-1tb-space-black-mvw53.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21040', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PLUS', 'price': 15499, 'url': 'https://www.electroplanet.ma/pc3051138-iphone-16-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.348+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21039', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PLUS', 'price': 15499, 'url': 'https://www.electroplanet.ma/pc3051138-iphone-16-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21038', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PLUS', 'price': 15499, 'url': 'https://www.electroplanet.ma/pc3051138-iphone-16-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.349+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21037', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PLUS', 'price': 14199, 'url': 'https://www.electroplanet.ma/pc3051138-iphone-16-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21036', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PLUS', 'price': 15499, 'url': 'https://www.electroplanet.ma/pc3051138-iphone-16-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.350+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24396', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16 PLUS', 'price': 14199, 'url': 'https://www.electroplanet.ma/pc3051138-iphone-16-plus.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22177', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 10699, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.351+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22176', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 9199, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22175', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 9199, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.352+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22152', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 13599, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22151', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 13599, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.353+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22150', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 13599, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.354+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22149', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 10699, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.355+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22148', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 10699, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21318', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 9199, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.356+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21317', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 9199, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24405', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI + CELLULAR', 'price': 9199, 'url': 'https://www.electroplanet.ma/pc3053736-ipad-mini-wifi-cellular.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.357+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21316', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 11699, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21315', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 11699, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.358+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21314', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 11699, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21313', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 11699, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.359+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21312', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 8799, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21311', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 8799, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.360+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21310', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 8799, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21307', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 8799, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.361+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21306', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 7299, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21305', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 7299, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21304', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 7299, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.362+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '21303', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 7299, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.363+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '24404', 'site': 'electroplanet', 'category': 'tablet', 'name': 'IPAD MINI WIFI', 'price': 7299, 'url': 'https://www.electroplanet.ma/pc3053752-ipad-mini-wifi.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22976', 'site': 'electroplanet', 'category': 'smartphone', 'name': 'IPHONE 16E', 'price': 11699, 'url': 'https://www.electroplanet.ma/pc3080536-iphone-16e.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '25494', 'site': 'electroplanet', 'category': 'moniteur', 'name': 'MSI ECRAN PC GAMING 24.5" MAG 245F X24', 'price': 1349, 'url': 'https://www.electroplanet.ma/p3121522-msi-ecran-pc-gaming-24-5-mag-245f-x24.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.364+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.scraper] ERROR: Error processing {'id': '22883', 'site': 'electroplanet', 'category': 'moniteur', 'name': 'MSI ECRAN MAG 276CXF PC GAMING 27"', 'price': 2699, 'url': 'https://www.electroplanet.ma/p3079983-msi-ecran-mag-276cxf-pc-gaming-27.html', 'scraped_at': '2026-05-04 03:00:07'}
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 340, in f
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO -     return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO - TypeError: process_item() takes 2 positional arguments but 3 were given
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.engine] INFO: Closing spider (finished)
+[2026-05-04T03:00:07.365+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.engine] ERROR: Scraper close failure
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/defer.py", line 1092, in _runCallbacks
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -     current.result = callback(  # type: ignore[misc]
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO - TypeError: close_spider() takes 1 positional argument but 2 were given
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.extensions.feedexport] INFO: Stored jsonl feed (0 items) in: /opt/***/scrapers/market_bot/data/electroplanet_2026-05-03.jsonl
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO - {'downloader/request_bytes': 4535,
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -  'downloader/request_count': 10,
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -  'downloader/request_method_count/GET': 10,
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -  'downloader/response_bytes': 83651,
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -  'downloader/response_count': 10,
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -  'downloader/response_status_count/200': 10,
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -  'elapsed_time_seconds': 5.950609,
+[2026-05-04T03:00:07.366+0000] {subprocess.py:93} INFO -  'feedexport/success_count/FileFeedStorage': 1,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'finish_reason': 'finished',
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'finish_time': datetime.datetime(2026, 5, 4, 3, 0, 7, 340107, tzinfo=datetime.timezone.utc),
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'httpcompression/response_bytes': 778434,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'httpcompression/response_count': 10,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'log_count/ERROR': 79,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'log_count/INFO': 21,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'memusage/max': 155303936,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'memusage/startup': 155303936,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'playwright/browser_count': 2,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'playwright/context_count': 2,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'playwright/context_count/max_concurrent': 1,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'playwright/context_count/persistent/False': 2,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'playwright/context_count/remote/False': 2,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'playwright/page_count': 0,
+[2026-05-04T03:00:07.367+0000] {subprocess.py:93} INFO -  'response_received_count': 10,
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO -  'scheduler/dequeued': 10,
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO -  'scheduler/dequeued/memory': 10,
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO -  'scheduler/enqueued': 10,
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO -  'scheduler/enqueued/memory': 10,
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO -  'start_time': datetime.datetime(2026, 5, 4, 3, 0, 1, 389498, tzinfo=datetime.timezone.utc)}
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy.core.engine] INFO: Spider closed (finished)
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy-playwright] INFO: Closing download handler
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy-playwright] INFO: Closing browser
+[2026-05-04T03:00:07.368+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy-playwright] INFO: Closing download handler
+[2026-05-04T03:00:07.447+0000] {subprocess.py:93} INFO - 2026-05-04 03:00:07 [scrapy-playwright] INFO: Closing browser
+[2026-05-04T03:00:07.542+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-05-04T03:00:07.562+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=market_intelligence_platform, task_id=parallel_scraping.scrape_electroplanet, execution_date=20260503T030000, start_date=20260504T030000, end_date=20260504T030007
+[2026-05-04T03:00:07.584+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-05-04T03:00:07.594+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

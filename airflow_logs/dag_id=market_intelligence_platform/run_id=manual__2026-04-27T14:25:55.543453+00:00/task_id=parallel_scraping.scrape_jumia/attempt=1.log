@@ -1,0 +1,188 @@
+[2026-04-27T14:25:56.494+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-04-27T14:25:55.543453+00:00 [queued]>
+[2026-04-27T14:25:56.500+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-04-27T14:25:55.543453+00:00 [queued]>
+[2026-04-27T14:25:56.501+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-04-27T14:25:56.514+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): parallel_scraping.scrape_jumia> on 2026-04-27 14:25:55.543453+00:00
+[2026-04-27T14:25:56.518+0000] {standard_task_runner.py:60} INFO - Started process 356 to run task
+[2026-04-27T14:25:56.520+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'market_intelligence_platform', 'parallel_scraping.scrape_jumia', 'manual__2026-04-27T14:25:55.543453+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/jumia_scraper_dag.py', '--cfg-path', '/tmp/tmp12tu69vv']
+[2026-04-27T14:25:56.521+0000] {standard_task_runner.py:88} INFO - Job 14: Subtask parallel_scraping.scrape_jumia
+[2026-04-27T14:25:56.556+0000] {task_command.py:423} INFO - Running <TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-04-27T14:25:55.543453+00:00 [running]> on host 472865914fc9
+[2026-04-27T14:25:56.625+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abdel' AIRFLOW_CTX_DAG_ID='market_intelligence_platform' AIRFLOW_CTX_TASK_ID='parallel_scraping.scrape_jumia' AIRFLOW_CTX_EXECUTION_DATE='2026-04-27T14:25:55.543453+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-27T14:25:55.543453+00:00'
+[2026-04-27T14:25:56.625+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-27T14:25:56.626+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'rm -f /opt/***/scrapers/market_bot/data/jumia_2026-04-27.jsonl && cd /opt/***/scrapers/market_bot && scrapy crawl jumia -s LOG_LEVEL=INFO -o /opt/***/scrapers/market_bot/data/jumia_2026-04-27.jsonl']
+[2026-04-27T14:25:56.632+0000] {subprocess.py:86} INFO - Output:
+[2026-04-27T14:25:57.019+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.utils.log] INFO: Scrapy 2.11.2 started (bot: market_bot)
+[2026-04-27T14:25:57.019+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.utils.log] INFO: Versions: lxml 5.1.0.0, libxml2 2.12.3, cssselect 1.2.0, parsel 1.9.1, w3lib 2.2.1, Twisted 25.5.0, Python 3.8.18 (default, Feb 13 2024, 11:06:24) - [GCC 12.2.0], pyOpenSSL 23.3.0 (OpenSSL 3.1.4 24 Oct 2023), cryptography 41.0.7, Platform Linux-6.19.11+kali-amd64-x86_64-with-glibc2.34
+[2026-04-27T14:25:57.021+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.addons] INFO: Enabled addons:
+[2026-04-27T14:25:57.022+0000] {subprocess.py:93} INFO - []
+[2026-04-27T14:25:57.031+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.extensions.telnet] INFO: Telnet Password: a666c6bd90697cf0
+[2026-04-27T14:25:57.160+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.middleware] INFO: Enabled extensions:
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO - ['scrapy.extensions.corestats.CoreStats',
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO -  'scrapy.extensions.telnet.TelnetConsole',
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO -  'scrapy.extensions.memusage.MemoryUsage',
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO -  'scrapy.extensions.closespider.CloseSpider',
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO -  'scrapy.extensions.feedexport.FeedExporter',
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO -  'scrapy.extensions.logstats.LogStats',
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO -  'scrapy.extensions.throttle.AutoThrottle']
+[2026-04-27T14:25:57.161+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.crawler] INFO: Overridden settings:
+[2026-04-27T14:25:57.162+0000] {subprocess.py:93} INFO - {'AUTOTHROTTLE_ENABLED': True,
+[2026-04-27T14:25:57.162+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_START_DELAY': 2.0,
+[2026-04-27T14:25:57.162+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_TARGET_CONCURRENCY': 2.0,
+[2026-04-27T14:25:57.162+0000] {subprocess.py:93} INFO -  'BOT_NAME': 'market_bot',
+[2026-04-27T14:25:57.162+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_ITEMCOUNT': 50000,
+[2026-04-27T14:25:57.162+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_PAGECOUNT': 5000,
+[2026-04-27T14:25:57.162+0000] {subprocess.py:93} INFO -  'CONCURRENT_REQUESTS': 12,
+[2026-04-27T14:25:57.163+0000] {subprocess.py:93} INFO -  'CONCURRENT_REQUESTS_PER_DOMAIN': 6,
+[2026-04-27T14:25:57.163+0000] {subprocess.py:93} INFO -  'DOWNLOAD_TIMEOUT': 90,
+[2026-04-27T14:25:57.163+0000] {subprocess.py:93} INFO -  'FEED_EXPORT_ENCODING': 'utf-8',
+[2026-04-27T14:25:57.163+0000] {subprocess.py:93} INFO -  'LOG_LEVEL': 'INFO',
+[2026-04-27T14:25:57.163+0000] {subprocess.py:93} INFO -  'NEWSPIDER_MODULE': 'market_bot.spiders',
+[2026-04-27T14:25:57.163+0000] {subprocess.py:93} INFO -  'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+[2026-04-27T14:25:57.163+0000] {subprocess.py:93} INFO -  'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429],
+[2026-04-27T14:25:57.164+0000] {subprocess.py:93} INFO -  'RETRY_TIMES': 5,
+[2026-04-27T14:25:57.164+0000] {subprocess.py:93} INFO -  'SPIDER_MODULES': ['market_bot.spiders'],
+[2026-04-27T14:25:57.164+0000] {subprocess.py:93} INFO -  'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+[2026-04-27T14:25:57.164+0000] {subprocess.py:93} INFO -  'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+[2026-04-27T14:25:57.164+0000] {subprocess.py:93} INFO -                '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'}
+[2026-04-27T14:25:57.238+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.middleware] INFO: Enabled downloader middlewares:
+[2026-04-27T14:25:57.238+0000] {subprocess.py:93} INFO - ['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+[2026-04-27T14:25:57.238+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+[2026-04-27T14:25:57.239+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+[2026-04-27T14:25:57.239+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+[2026-04-27T14:25:57.239+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+[2026-04-27T14:25:57.239+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+[2026-04-27T14:25:57.239+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+[2026-04-27T14:25:57.239+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+[2026-04-27T14:25:57.239+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.stats.DownloaderStats']
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.middleware] INFO: Enabled spider middlewares:
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO - ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.referer.RefererMiddleware',
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+[2026-04-27T14:25:57.240+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.depth.DepthMiddleware']
+[2026-04-27T14:25:57.254+0000] {subprocess.py:93} INFO - %4|1777299957.254|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property api.version.request is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Request broker's supported API versions to adjust functionality to available protocol features. If set to false, or the ApiVersionRequest fails, the fallback version `broker.version.fallback` will be used. **NOTE**: Depends on broker version >=0.10.0. If the request is not supported by (an older) broker the `broker.version.fallback` fallback is used.
+[2026-04-27T14:25:57.255+0000] {subprocess.py:93} INFO - %4|1777299957.254|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property broker.version.fallback is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Older broker versions (before 0.10.0) provide no way for a client to query for supported protocol features (ApiVersionRequest, see `api.version.request`) making it impossible for the client to know what features it may use. As a workaround a user may set this property to the expected broker version and the client will automatically adjust its feature set accordingly if the ApiVersionRequest fails (or is disabled). The fallback broker version will be used for `api.version.fallback.ms`. Valid values are: 0.9.0, 0.8.2, 0.8.1, 0.8.0. Any other value >= 0.10, such as 0.10.2.1, enables ApiVersionRequests.
+[2026-04-27T14:25:57.255+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.middleware] INFO: Enabled item pipelines:
+[2026-04-27T14:25:57.255+0000] {subprocess.py:93} INFO - ['market_bot.pipelines.KafkaPipeline']
+[2026-04-27T14:25:57.255+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.core.engine] INFO: Spider opened
+[2026-04-27T14:25:57.260+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-27T14:25:57.262+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy.utils.signal] ERROR: Error caught on signal handler: <bound method TelnetConsole.start_listening of <scrapy.extensions.telnet.TelnetConsole object at 0x7ff295f6a6a0>>
+[2026-04-27T14:25:57.262+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-04-27T14:25:57.262+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 348, in maybeDeferred_coro
+[2026-04-27T14:25:57.262+0000] {subprocess.py:93} INFO -     result = f(*args, **kw)
+[2026-04-27T14:25:57.262+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/pydispatch/robustapply.py", line 55, in robustApply
+[2026-04-27T14:25:57.262+0000] {subprocess.py:93} INFO -     return receiver(*arguments, **named)
+[2026-04-27T14:25:57.262+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/extensions/telnet.py", line 68, in start_listening
+[2026-04-27T14:25:57.263+0000] {subprocess.py:93} INFO -     self.port = listen_tcp(self.portrange, self.host, self)
+[2026-04-27T14:25:57.263+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/reactor.py", line 29, in listen_tcp
+[2026-04-27T14:25:57.263+0000] {subprocess.py:93} INFO -     return reactor.listenTCP(x, factory, interface=host)
+[2026-04-27T14:25:57.263+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/posixbase.py", line 366, in listenTCP
+[2026-04-27T14:25:57.263+0000] {subprocess.py:93} INFO -     p.startListening()
+[2026-04-27T14:25:57.263+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/twisted/internet/tcp.py", line 1361, in startListening
+[2026-04-27T14:25:57.263+0000] {subprocess.py:93} INFO -     skt.listen(self.backlog)
+[2026-04-27T14:25:57.264+0000] {subprocess.py:93} INFO - OSError: [Errno 98] Address already in use
+[2026-04-27T14:25:57.264+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy-playwright] INFO: Starting download handler
+[2026-04-27T14:25:57.264+0000] {subprocess.py:93} INFO - 2026-04-27 14:25:57 [scrapy-playwright] INFO: Starting download handler
+[2026-04-27T14:26:04.314+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:04 [tldextract.cache] WARNING: unable to cache publicsuffix.org-tlds.{'urls': ('https://publicsuffix.org/list/public_suffix_list.dat', 'https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat'), 'fallback_to_snapshot': True} in /home/***/.cache/python-tldextract/3.8.18.final__local__ecb11d__tldextract-5.1.2/publicsuffix.org-tlds/de84b5ca2167d4c83e38fb162f2e8738.tldextract.json. This could refresh the Public Suffix List over HTTP every app startup. Construct your `TLDExtract` with a writable `cache_dir` or set `cache_dir=None` to silence this warning. [Errno 13] Permission denied: '/home/***/.cache/python-tldextract'
+[2026-04-27T14:26:04.981+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:04 [jumia] INFO: 🚀 Jumia | laptop | 70 produits trouvés.
+[2026-04-27T14:26:06.393+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:06 [jumia] INFO: 🚀 Jumia | smartphone | 43 produits trouvés.
+[2026-04-27T14:26:09.600+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:09 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:11.292+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:11 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:13.294+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:13 [jumia] INFO: 🚀 Jumia | tablet | 49 produits trouvés.
+[2026-04-27T14:26:13.553+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:13 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:14.969+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:14 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:15.536+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:15 [jumia] INFO: 🚀 Jumia | tablet | 40 produits trouvés.
+[2026-04-27T14:26:17.042+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:17 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:17.903+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:17 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:18.867+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:18 [jumia] INFO: 🚀 Jumia | tablet | 40 produits trouvés.
+[2026-04-27T14:26:19.852+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:19 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:20.814+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:20 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:21.903+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:21 [jumia] INFO: 🚀 Jumia | tablet | 40 produits trouvés.
+[2026-04-27T14:26:22.234+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:22 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:23.347+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:23 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:23.980+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:23 [jumia] INFO: 🚀 Jumia | tablet | 23 produits trouvés.
+[2026-04-27T14:26:25.228+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:25 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:26.225+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:26 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:26.941+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:26 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:27.624+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:27 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:28.684+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:28 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:29.762+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:29 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:30.724+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:30 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:31.252+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:31 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:32.437+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:32 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:33.692+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:33 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:35.012+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:35 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:35.292+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:35 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:36.975+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:36 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:37.559+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:37 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:38.770+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:38 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:40.425+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:40 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:41.039+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:41 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:42.632+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:42 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:43.611+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:43 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:44.704+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:44 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:46.408+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:46 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:46.896+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:46 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:48.447+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:48 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:50.352+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:50 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:51.679+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:51 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:52.747+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:52 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:54.442+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:54 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:56.437+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:56 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:26:56.844+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:56 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:26:57.261+0000] {subprocess.py:93} INFO - 2026-04-27 14:26:57 [scrapy.extensions.logstats] INFO: Crawled 46 pages (at 46 pages/min), scraped 1823 items (at 1823 items/min)
+[2026-04-27T14:27:00.038+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:00 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:27:00.180+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:00 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:27:02.504+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:02 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:27:04.801+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:04 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:27:04.840+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:04 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-27T14:27:07.281+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:07 [jumia] INFO: 🚀 Jumia | laptop | 6 produits trouvés.
+[2026-04-27T14:27:07.518+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:07 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-27T14:27:08.405+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [jumia] INFO: 🚀 Jumia | smartphone | 1 produits trouvés.
+[2026-04-27T14:27:08.407+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [scrapy.core.engine] INFO: Closing spider (finished)
+[2026-04-27T14:27:08.407+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [jumia] INFO: Flushing Kafka Producer...
+[2026-04-27T14:27:08.408+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [scrapy.extensions.feedexport] INFO: Stored jsonl feed (2070 items) in: /opt/***/scrapers/market_bot/data/jumia_2026-04-27.jsonl
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO - {'downloader/request_bytes': 61490,
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO -  'downloader/request_count': 56,
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO -  'downloader/request_method_count/GET': 56,
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO -  'downloader/response_bytes': 3726507,
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO -  'downloader/response_count': 56,
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO -  'downloader/response_status_count/200': 54,
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO -  'downloader/response_status_count/301': 2,
+[2026-04-27T14:27:08.409+0000] {subprocess.py:93} INFO -  'elapsed_time_seconds': 71.147918,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'feedexport/success_count/FileFeedStorage': 1,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'finish_reason': 'finished',
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'finish_time': datetime.datetime(2026, 4, 27, 14, 27, 8, 408290, tzinfo=datetime.timezone.utc),
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'httpcompression/response_bytes': 25760539,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'httpcompression/response_count': 54,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'item_scraped_count': 2070,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'log_count/ERROR': 1,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'log_count/INFO': 68,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'log_count/WARNING': 1,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'memusage/max': 155287552,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'memusage/startup': 155287552,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'request_depth_max': 24,
+[2026-04-27T14:27:08.410+0000] {subprocess.py:93} INFO -  'response_received_count': 54,
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -  'scheduler/dequeued': 56,
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -  'scheduler/dequeued/memory': 56,
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -  'scheduler/enqueued': 56,
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -  'scheduler/enqueued/memory': 56,
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -  'start_time': datetime.datetime(2026, 4, 27, 14, 25, 57, 260372, tzinfo=datetime.timezone.utc)}
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [scrapy.core.engine] INFO: Spider closed (finished)
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [scrapy.utils.signal] ERROR: Error caught on signal handler: <bound method TelnetConsole.stop_listening of <scrapy.extensions.telnet.TelnetConsole object at 0x7ff295f6a6a0>>
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/defer.py", line 348, in maybeDeferred_coro
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -     result = f(*args, **kw)
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/pydispatch/robustapply.py", line 55, in robustApply
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -     return receiver(*arguments, **named)
+[2026-04-27T14:27:08.411+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/extensions/telnet.py", line 77, in stop_listening
+[2026-04-27T14:27:08.412+0000] {subprocess.py:93} INFO -     self.port.stopListening()
+[2026-04-27T14:27:08.412+0000] {subprocess.py:93} INFO - AttributeError: 'TelnetConsole' object has no attribute 'port'
+[2026-04-27T14:27:08.412+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [scrapy-playwright] INFO: Closing download handler
+[2026-04-27T14:27:08.414+0000] {subprocess.py:93} INFO - 2026-04-27 14:27:08 [scrapy-playwright] INFO: Closing download handler
+[2026-04-27T14:27:08.636+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-27T14:27:08.657+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=market_intelligence_platform, task_id=parallel_scraping.scrape_jumia, execution_date=20260427T142555, start_date=20260427T142556, end_date=20260427T142708
+[2026-04-27T14:27:08.676+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-04-27T14:27:08.688+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

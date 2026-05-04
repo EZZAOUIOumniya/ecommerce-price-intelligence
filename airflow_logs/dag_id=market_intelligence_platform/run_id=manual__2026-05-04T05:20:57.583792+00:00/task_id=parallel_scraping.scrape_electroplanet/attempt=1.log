@@ -1,0 +1,25 @@
+[2026-05-04T05:20:57.823+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_electroplanet manual__2026-05-04T05:20:57.583792+00:00 [queued]>
+[2026-05-04T05:20:57.829+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_electroplanet manual__2026-05-04T05:20:57.583792+00:00 [queued]>
+[2026-05-04T05:20:57.829+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-05-04T05:20:57.841+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): parallel_scraping.scrape_electroplanet> on 2026-05-04 05:20:57.583792+00:00
+[2026-05-04T05:20:57.845+0000] {standard_task_runner.py:60} INFO - Started process 25000 to run task
+[2026-05-04T05:20:57.849+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'market_intelligence_platform', 'parallel_scraping.scrape_electroplanet', 'manual__2026-05-04T05:20:57.583792+00:00', '--job-id', '288', '--raw', '--subdir', 'DAGS_FOLDER/jumia_scraper_dag.py', '--cfg-path', '/tmp/tmp3g3i23os']
+[2026-05-04T05:20:57.855+0000] {standard_task_runner.py:88} INFO - Job 288: Subtask parallel_scraping.scrape_electroplanet
+[2026-05-04T05:20:57.893+0000] {task_command.py:423} INFO - Running <TaskInstance: market_intelligence_platform.parallel_scraping.scrape_electroplanet manual__2026-05-04T05:20:57.583792+00:00 [running]> on host c1627dbb6835
+[2026-05-04T05:20:57.964+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abdel' AIRFLOW_CTX_DAG_ID='market_intelligence_platform' AIRFLOW_CTX_TASK_ID='parallel_scraping.scrape_electroplanet' AIRFLOW_CTX_EXECUTION_DATE='2026-05-04T05:20:57.583792+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-04T05:20:57.583792+00:00'
+[2026-05-04T05:20:57.965+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-04T05:20:57.966+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'mkdir -p /opt/***/scrapers/market_bot/data && cd /opt/***/scrapers/market_bot && /opt/***/scrapers/venv/bin/scrapy crawl electroplanet -s LOG_LEVEL=INFO -o /opt/***/scrapers/market_bot/data/electroplanet_2026-05-04.jsonl']
+[2026-05-04T05:20:57.975+0000] {subprocess.py:86} INFO - Output:
+[2026-05-04T05:20:57.978+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: /opt/***/scrapers/venv/bin/scrapy: cannot execute: required file not found
+[2026-05-04T05:20:57.979+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2026-05-04T05:20:57.991+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 428, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2026-05-04T05:20:57.994+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=market_intelligence_platform, task_id=parallel_scraping.scrape_electroplanet, execution_date=20260504T052057, start_date=20260504T052057, end_date=20260504T052057
+[2026-05-04T05:20:58.008+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 288 for task parallel_scraping.scrape_electroplanet (Bash command failed. The command returned a non-zero exit code 127.; 25000)
+[2026-05-04T05:20:58.020+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-05-04T05:20:58.043+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

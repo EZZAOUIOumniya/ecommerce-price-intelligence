@@ -1,0 +1,7 @@
+# Ignore build artifacts and database
+*.duckdb
+target/
+logs/
+.dbt/
+venv/
+__pycache__/

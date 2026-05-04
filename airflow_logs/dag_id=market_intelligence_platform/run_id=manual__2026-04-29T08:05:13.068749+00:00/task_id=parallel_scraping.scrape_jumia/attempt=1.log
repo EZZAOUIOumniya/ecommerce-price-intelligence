@@ -1,0 +1,163 @@
+[2026-04-29T08:05:13.414+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-04-29T08:05:13.068749+00:00 [queued]>
+[2026-04-29T08:05:13.419+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-04-29T08:05:13.068749+00:00 [queued]>
+[2026-04-29T08:05:13.419+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-04-29T08:05:13.430+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): parallel_scraping.scrape_jumia> on 2026-04-29 08:05:13.068749+00:00
+[2026-04-29T08:05:13.434+0000] {standard_task_runner.py:60} INFO - Started process 565 to run task
+[2026-04-29T08:05:13.436+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'market_intelligence_platform', 'parallel_scraping.scrape_jumia', 'manual__2026-04-29T08:05:13.068749+00:00', '--job-id', '81', '--raw', '--subdir', 'DAGS_FOLDER/jumia_scraper_dag.py', '--cfg-path', '/tmp/tmpkopg0r9m']
+[2026-04-29T08:05:13.437+0000] {standard_task_runner.py:88} INFO - Job 81: Subtask parallel_scraping.scrape_jumia
+[2026-04-29T08:05:13.479+0000] {task_command.py:423} INFO - Running <TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-04-29T08:05:13.068749+00:00 [running]> on host 843c5187474d
+[2026-04-29T08:05:13.546+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abdel' AIRFLOW_CTX_DAG_ID='market_intelligence_platform' AIRFLOW_CTX_TASK_ID='parallel_scraping.scrape_jumia' AIRFLOW_CTX_EXECUTION_DATE='2026-04-29T08:05:13.068749+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-29T08:05:13.068749+00:00'
+[2026-04-29T08:05:13.546+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-29T08:05:13.547+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'mkdir -p /opt/***/scrapers/market_bot/data && cd /opt/***/scrapers/market_bot && python3 -m scrapy crawl jumia -s LOG_LEVEL=INFO -o /opt/***/scrapers/market_bot/data/jumia_2026-04-29.jsonl']
+[2026-04-29T08:05:13.555+0000] {subprocess.py:86} INFO - Output:
+[2026-04-29T08:05:13.952+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:13 [scrapy.utils.log] INFO: Scrapy 2.11.2 started (bot: market_bot)
+[2026-04-29T08:05:13.952+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:13 [scrapy.utils.log] INFO: Versions: lxml 5.1.0.0, libxml2 2.12.3, cssselect 1.2.0, parsel 1.9.1, w3lib 2.2.1, Twisted 25.5.0, Python 3.8.18 (default, Feb 13 2024, 11:06:24) - [GCC 12.2.0], pyOpenSSL 23.3.0 (OpenSSL 3.1.4 24 Oct 2023), cryptography 41.0.7, Platform Linux-6.19.11+kali-amd64-x86_64-with-glibc2.34
+[2026-04-29T08:05:13.954+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:13 [scrapy.addons] INFO: Enabled addons:
+[2026-04-29T08:05:13.954+0000] {subprocess.py:93} INFO - []
+[2026-04-29T08:05:13.962+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:13 [scrapy.extensions.telnet] INFO: Telnet Password: 277b22383f36954b
+[2026-04-29T08:05:14.081+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.middleware] INFO: Enabled extensions:
+[2026-04-29T08:05:14.081+0000] {subprocess.py:93} INFO - ['scrapy.extensions.corestats.CoreStats',
+[2026-04-29T08:05:14.081+0000] {subprocess.py:93} INFO -  'scrapy.extensions.telnet.TelnetConsole',
+[2026-04-29T08:05:14.081+0000] {subprocess.py:93} INFO -  'scrapy.extensions.memusage.MemoryUsage',
+[2026-04-29T08:05:14.081+0000] {subprocess.py:93} INFO -  'scrapy.extensions.closespider.CloseSpider',
+[2026-04-29T08:05:14.081+0000] {subprocess.py:93} INFO -  'scrapy.extensions.feedexport.FeedExporter',
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'scrapy.extensions.logstats.LogStats',
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'scrapy.extensions.throttle.AutoThrottle']
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.crawler] INFO: Overridden settings:
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO - {'ASYNCIO_EVENT_LOOP': 'asyncio.SelectorEventLoop',
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_ENABLED': True,
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_MAX_DELAY': 30.0,
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_START_DELAY': 1.0,
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'AUTOTHROTTLE_TARGET_CONCURRENCY': 4.0,
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'BOT_NAME': 'market_bot',
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_ITEMCOUNT': 50000,
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'CLOSESPIDER_PAGECOUNT': 5000,
+[2026-04-29T08:05:14.082+0000] {subprocess.py:93} INFO -  'CONCURRENT_REQUESTS': 32,
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'CONCURRENT_REQUESTS_PER_DOMAIN': 16,
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'COOKIES_ENABLED': False,
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'DOWNLOAD_TIMEOUT': 60,
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'FEED_EXPORT_ENCODING': 'utf-8',
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'LOG_LEVEL': 'INFO',
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'NEWSPIDER_MODULE': 'market_bot.spiders',
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429],
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'RETRY_TIMES': 5,
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'SPIDER_MODULES': ['market_bot.spiders'],
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -  'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+[2026-04-29T08:05:14.083+0000] {subprocess.py:93} INFO -                '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'}
+[2026-04-29T08:05:14.143+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.middleware] INFO: Enabled downloader middlewares:
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO - ['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO -  'scrapy.downloadermiddlewares.stats.DownloaderStats']
+[2026-04-29T08:05:14.144+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.middleware] INFO: Enabled spider middlewares:
+[2026-04-29T08:05:14.145+0000] {subprocess.py:93} INFO - ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+[2026-04-29T08:05:14.145+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.referer.RefererMiddleware',
+[2026-04-29T08:05:14.145+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+[2026-04-29T08:05:14.145+0000] {subprocess.py:93} INFO -  'scrapy.spidermiddlewares.depth.DepthMiddleware']
+[2026-04-29T08:05:14.150+0000] {subprocess.py:93} INFO - %4|1777449914.150|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property api.version.request is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Request broker's supported API versions to adjust functionality to available protocol features. If set to false, or the ApiVersionRequest fails, the fallback version `broker.version.fallback` will be used. **NOTE**: Depends on broker version >=0.10.0. If the request is not supported by (an older) broker the `broker.version.fallback` fallback is used.
+[2026-04-29T08:05:14.150+0000] {subprocess.py:93} INFO - %4|1777449914.150|CONFWARN|scrapy-bot#producer-1| [thrd:app]: Configuration property broker.version.fallback is deprecated: **Post-deprecation actions: remove this configuration property, brokers < 0.10.0 won't be supported anymore in librdkafka 3.x.** Older broker versions (before 0.10.0) provide no way for a client to query for supported protocol features (ApiVersionRequest, see `api.version.request`) making it impossible for the client to know what features it may use. As a workaround a user may set this property to the expected broker version and the client will automatically adjust its feature set accordingly if the ApiVersionRequest fails (or is disabled). The fallback broker version will be used for `api.version.fallback.ms`. Valid values are: 0.9.0, 0.8.2, 0.8.1, 0.8.0. Any other value >= 0.10, such as 0.10.2.1, enables ApiVersionRequests.
+[2026-04-29T08:05:14.150+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.middleware] INFO: Enabled item pipelines:
+[2026-04-29T08:05:14.150+0000] {subprocess.py:93} INFO - ['market_bot.pipelines.KafkaPipeline']
+[2026-04-29T08:05:14.151+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.core.engine] INFO: Spider opened
+[2026-04-29T08:05:14.155+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+[2026-04-29T08:05:14.156+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6024
+[2026-04-29T08:05:14.157+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy-playwright] INFO: Starting download handler
+[2026-04-29T08:05:14.157+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:14 [scrapy-playwright] INFO: Starting download handler
+[2026-04-29T08:05:22.520+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:22 [jumia] INFO: 🚀 Jumia | laptop | 70 produits trouvés.
+[2026-04-29T08:05:23.877+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:23 [jumia] INFO: 🚀 Jumia | smartphone | 43 produits trouvés.
+[2026-04-29T08:05:25.715+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:25 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:05:26.250+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:26 [jumia] INFO: 🚀 Jumia | tablet | 49 produits trouvés.
+[2026-04-29T08:05:27.277+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:27 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:05:29.657+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:29 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:05:30.262+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:30 [jumia] INFO: 🚀 Jumia | tablet | 40 produits trouvés.
+[2026-04-29T08:05:30.390+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:30 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:05:31.875+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:31 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:05:45.002+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:45 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:05:45.052+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:45 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:05:46.078+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:46 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:05:49.676+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:49 [jumia] INFO: 🚀 Jumia | tablet | 40 produits trouvés.
+[2026-04-29T08:05:50.711+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:50 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:05:56.046+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:56 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:05:59.277+0000] {subprocess.py:93} INFO - 2026-04-29 08:05:59 [jumia] INFO: 🚀 Jumia | tablet | 40 produits trouvés.
+[2026-04-29T08:06:00.372+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:00 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:01.988+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:01 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:02.119+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:02 [jumia] INFO: 🚀 Jumia | tablet | 27 produits trouvés.
+[2026-04-29T08:06:03.419+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:03 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:04.009+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:04 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:04.449+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:04 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:05.495+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:05 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:05.875+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:05 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:06.942+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:06 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:14.156+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:14 [scrapy.extensions.logstats] INFO: Crawled 25 pages (at 25 pages/min), scraped 987 items (at 987 items/min)
+[2026-04-29T08:06:19.321+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:19 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:20.624+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:20 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:20.917+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:20 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:24.110+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:24 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:25.539+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:25 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:26.709+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:26 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:28.024+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:28 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:28.205+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:28 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:29.635+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:29 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:30.584+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:30 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:31.252+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:31 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:31.426+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:31 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:32.411+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:32 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:33.558+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:33 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:33.951+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:33 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:35.031+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:35 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:35.655+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:35 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:37.480+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:37 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:38.505+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:38 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:39.366+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:39 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:40.204+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:40 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:41.298+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:41 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:41.600+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:41 [jumia] INFO: 🚀 Jumia | laptop | 40 produits trouvés.
+[2026-04-29T08:06:58.275+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:58 [jumia] INFO: 🚀 Jumia | smartphone | 40 produits trouvés.
+[2026-04-29T08:06:59.470+0000] {subprocess.py:93} INFO - 2026-04-29 08:06:59 [jumia] INFO: 🚀 Jumia | smartphone | 8 produits trouvés.
+[2026-04-29T08:07:06.422+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [jumia] INFO: 🚀 Jumia | laptop | 211 produits trouvés.
+[2026-04-29T08:07:06.464+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [scrapy.core.engine] INFO: Closing spider (finished)
+[2026-04-29T08:07:06.465+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [jumia] INFO: Finalizing Kafka: 1955 items produced. Flushing...
+[2026-04-29T08:07:06.465+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [jumia] INFO: 🚀 Tous les messages ont été envoyés avec succès.
+[2026-04-29T08:07:06.466+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [scrapy.extensions.feedexport] INFO: Stored jsonl feed (1955 items) in: /opt/***/scrapers/market_bot/data/jumia_2026-04-29.jsonl
+[2026-04-29T08:07:06.466+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+[2026-04-29T08:07:06.466+0000] {subprocess.py:93} INFO - {'downloader/request_bytes': 19409,
+[2026-04-29T08:07:06.467+0000] {subprocess.py:93} INFO -  'downloader/request_count': 54,
+[2026-04-29T08:07:06.467+0000] {subprocess.py:93} INFO -  'downloader/request_method_count/GET': 54,
+[2026-04-29T08:07:06.467+0000] {subprocess.py:93} INFO -  'downloader/response_bytes': 3699678,
+[2026-04-29T08:07:06.467+0000] {subprocess.py:93} INFO -  'downloader/response_count': 54,
+[2026-04-29T08:07:06.467+0000] {subprocess.py:93} INFO -  'downloader/response_status_count/200': 51,
+[2026-04-29T08:07:06.467+0000] {subprocess.py:93} INFO -  'downloader/response_status_count/301': 2,
+[2026-04-29T08:07:06.467+0000] {subprocess.py:93} INFO -  'downloader/response_status_count/302': 1,
+[2026-04-29T08:07:06.468+0000] {subprocess.py:93} INFO -  'elapsed_time_seconds': 112.309976,
+[2026-04-29T08:07:06.468+0000] {subprocess.py:93} INFO -  'feedexport/success_count/FileFeedStorage': 1,
+[2026-04-29T08:07:06.468+0000] {subprocess.py:93} INFO -  'finish_reason': 'finished',
+[2026-04-29T08:07:06.468+0000] {subprocess.py:93} INFO -  'finish_time': datetime.datetime(2026, 4, 29, 8, 7, 6, 465419, tzinfo=datetime.timezone.utc),
+[2026-04-29T08:07:06.468+0000] {subprocess.py:93} INFO -  'httpcompression/response_bytes': 25039620,
+[2026-04-29T08:07:06.468+0000] {subprocess.py:93} INFO -  'httpcompression/response_count': 51,
+[2026-04-29T08:07:06.468+0000] {subprocess.py:93} INFO -  'item_scraped_count': 1955,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'log_count/INFO': 67,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'memusage/max': 155193344,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'memusage/startup': 155193344,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'request_depth_max': 24,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'response_received_count': 51,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'scheduler/dequeued': 54,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'scheduler/dequeued/memory': 54,
+[2026-04-29T08:07:06.469+0000] {subprocess.py:93} INFO -  'scheduler/enqueued': 54,
+[2026-04-29T08:07:06.470+0000] {subprocess.py:93} INFO -  'scheduler/enqueued/memory': 54,
+[2026-04-29T08:07:06.470+0000] {subprocess.py:93} INFO -  'start_time': datetime.datetime(2026, 4, 29, 8, 5, 14, 155443, tzinfo=datetime.timezone.utc)}
+[2026-04-29T08:07:06.470+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [scrapy.core.engine] INFO: Spider closed (finished)
+[2026-04-29T08:07:06.470+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [scrapy-playwright] INFO: Closing download handler
+[2026-04-29T08:07:06.472+0000] {subprocess.py:93} INFO - 2026-04-29 08:07:06 [scrapy-playwright] INFO: Closing download handler
+[2026-04-29T08:07:06.773+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-29T08:07:06.798+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=market_intelligence_platform, task_id=parallel_scraping.scrape_jumia, execution_date=20260429T080513, start_date=20260429T080513, end_date=20260429T080706
+[2026-04-29T08:07:06.842+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-04-29T08:07:06.860+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

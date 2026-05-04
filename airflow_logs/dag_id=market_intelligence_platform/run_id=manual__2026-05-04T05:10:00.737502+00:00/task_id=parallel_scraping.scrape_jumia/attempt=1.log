@@ -1,0 +1,60 @@
+[2026-05-04T05:10:01.277+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-05-04T05:10:00.737502+00:00 [queued]>
+[2026-05-04T05:10:01.286+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-05-04T05:10:00.737502+00:00 [queued]>
+[2026-05-04T05:10:01.286+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-05-04T05:10:01.304+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): parallel_scraping.scrape_jumia> on 2026-05-04 05:10:00.737502+00:00
+[2026-05-04T05:10:01.309+0000] {standard_task_runner.py:60} INFO - Started process 24660 to run task
+[2026-05-04T05:10:01.312+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'market_intelligence_platform', 'parallel_scraping.scrape_jumia', 'manual__2026-05-04T05:10:00.737502+00:00', '--job-id', '240', '--raw', '--subdir', 'DAGS_FOLDER/jumia_scraper_dag.py', '--cfg-path', '/tmp/tmp6qzos7_q']
+[2026-05-04T05:10:01.314+0000] {standard_task_runner.py:88} INFO - Job 240: Subtask parallel_scraping.scrape_jumia
+[2026-05-04T05:10:01.360+0000] {task_command.py:423} INFO - Running <TaskInstance: market_intelligence_platform.parallel_scraping.scrape_jumia manual__2026-05-04T05:10:00.737502+00:00 [running]> on host c1627dbb6835
+[2026-05-04T05:10:01.431+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abdel' AIRFLOW_CTX_DAG_ID='market_intelligence_platform' AIRFLOW_CTX_TASK_ID='parallel_scraping.scrape_jumia' AIRFLOW_CTX_EXECUTION_DATE='2026-05-04T05:10:00.737502+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-04T05:10:00.737502+00:00'
+[2026-05-04T05:10:01.432+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-05-04T05:10:01.432+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'mkdir -p /opt/***/scrapers/market_bot/data && cd /opt/***/scrapers/market_bot && python3 -m scrapy crawl jumia -s LOG_LEVEL=INFO -o /opt/***/scrapers/market_bot/data/jumia_2026-05-04.jsonl']
+[2026-05-04T05:10:01.442+0000] {subprocess.py:86} INFO - Output:
+[2026-05-04T05:10:01.832+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-05-04T05:10:01.833+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+[2026-05-04T05:10:01.833+0000] {subprocess.py:93} INFO -     return _run_code(code, main_globals, None,
+[2026-05-04T05:10:01.833+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/runpy.py", line 87, in _run_code
+[2026-05-04T05:10:01.833+0000] {subprocess.py:93} INFO -     exec(code, run_globals)
+[2026-05-04T05:10:01.833+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/__main__.py", line 4, in <module>
+[2026-05-04T05:10:01.833+0000] {subprocess.py:93} INFO -     execute()
+[2026-05-04T05:10:01.834+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/cmdline.py", line 160, in execute
+[2026-05-04T05:10:01.834+0000] {subprocess.py:93} INFO -     cmd.crawler_process = CrawlerProcess(settings)
+[2026-05-04T05:10:01.834+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/crawler.py", line 357, in __init__
+[2026-05-04T05:10:01.834+0000] {subprocess.py:93} INFO -     super().__init__(settings)
+[2026-05-04T05:10:01.834+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/crawler.py", line 227, in __init__
+[2026-05-04T05:10:01.834+0000] {subprocess.py:93} INFO -     self.spider_loader = self._get_spider_loader(settings)
+[2026-05-04T05:10:01.834+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/crawler.py", line 221, in _get_spider_loader
+[2026-05-04T05:10:01.835+0000] {subprocess.py:93} INFO -     return loader_cls.from_settings(settings.frozencopy())
+[2026-05-04T05:10:01.835+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/spiderloader.py", line 79, in from_settings
+[2026-05-04T05:10:01.835+0000] {subprocess.py:93} INFO -     return cls(settings)
+[2026-05-04T05:10:01.835+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/spiderloader.py", line 34, in __init__
+[2026-05-04T05:10:01.835+0000] {subprocess.py:93} INFO -     self._load_all_spiders()
+[2026-05-04T05:10:01.835+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/spiderloader.py", line 63, in _load_all_spiders
+[2026-05-04T05:10:01.836+0000] {subprocess.py:93} INFO -     for module in walk_modules(name):
+[2026-05-04T05:10:01.836+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/scrapy/utils/misc.py", line 106, in walk_modules
+[2026-05-04T05:10:01.836+0000] {subprocess.py:93} INFO -     submod = import_module(fullpath)
+[2026-05-04T05:10:01.836+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.8/importlib/__init__.py", line 127, in import_module
+[2026-05-04T05:10:01.836+0000] {subprocess.py:93} INFO -     return _bootstrap._gcd_import(name[level:], package, level)
+[2026-05-04T05:10:01.836+0000] {subprocess.py:93} INFO -   File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+[2026-05-04T05:10:01.836+0000] {subprocess.py:93} INFO -   File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+[2026-05-04T05:10:01.837+0000] {subprocess.py:93} INFO -   File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+[2026-05-04T05:10:01.837+0000] {subprocess.py:93} INFO -   File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+[2026-05-04T05:10:01.837+0000] {subprocess.py:93} INFO -   File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+[2026-05-04T05:10:01.837+0000] {subprocess.py:93} INFO -   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+[2026-05-04T05:10:01.837+0000] {subprocess.py:93} INFO -   File "/opt/***/scrapers/market_bot/market_bot/spiders/electro_spider.py", line 6, in <module>
+[2026-05-04T05:10:01.837+0000] {subprocess.py:93} INFO -     class ElectroplanetSpider(BaseMarketSpider):
+[2026-05-04T05:10:01.837+0000] {subprocess.py:93} INFO -   File "/opt/***/scrapers/market_bot/market_bot/spiders/electro_spider.py", line 74, in ElectroplanetSpider
+[2026-05-04T05:10:01.838+0000] {subprocess.py:93} INFO -     def _classify(self, link: str, name: str = '') -> str | None:
+[2026-05-04T05:10:01.838+0000] {subprocess.py:93} INFO - TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
+[2026-05-04T05:10:01.901+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-05-04T05:10:01.910+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 428, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-05-04T05:10:01.912+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=market_intelligence_platform, task_id=parallel_scraping.scrape_jumia, execution_date=20260504T051000, start_date=20260504T051001, end_date=20260504T051001
+[2026-05-04T05:10:01.919+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 240 for task parallel_scraping.scrape_jumia (Bash command failed. The command returned a non-zero exit code 1.; 24660)
+[2026-05-04T05:10:01.925+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-05-04T05:10:01.938+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
