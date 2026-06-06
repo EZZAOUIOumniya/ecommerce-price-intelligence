@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from airflow.utils.log.logging_mixin import LoggingMixin
 
 logger = LoggingMixin().log
@@ -24,7 +24,7 @@ def validate_data():
     logger.warning(f"Zero price rows: {zero_price}")
     logger.warning(f"Unknown source rows: {unknown_source}")
     if zero_price > len(df) * 0.3:
-        raise ValueError("Too many invalid prices (>30%)")
+        raise ValueError("Too many invalid prices")
     logger.info("Validation OK")
 
 # -------------------------
@@ -46,28 +46,53 @@ def log_summary():
 # -------------------------
 def transform_data():
     df = pd.read_csv(FILE_PATH)
+
+    # Correction colonnes inversées site/name
+    df = df.rename(columns={"site": "name", "name": "site"})
+
+    # Extraire le vrai site depuis product_id (format: site#...)
+    df["site"] = df["product_id"].str.split("#").str[0]
+
+    # Remplacer brand vide par "Inconnue"
+    df["brand"] = df["brand"].fillna("Inconnue")
+
+    # Calculs stats
     df["price_zscore"] = (df["price"] - df["price"].mean()) / df["price"].std()
-    # flag outliers (|z| > 3)
     df["is_outlier"] = df["price_zscore"].abs() > 3
+    category_avg = df.groupby("category")["price"].transform("mean")
+    df["price_deviation"] = df["price"] - category_avg
+    df["category_avg_price"] = category_avg
+
     df.to_csv(TRANSFORMED_PATH, index=False)
-    logger.info(f"Transformation done — {len(df)} rows written to {TRANSFORMED_PATH}")
+    logger.info(f"Transformation done — {len(df)} rows written")
+
 
 # -------------------------
 # 4. LOAD TO POSTGRESQL
 # -------------------------
 def load_to_postgres():
     df = pd.read_csv(TRANSFORMED_PATH)
+
     engine = create_engine(POSTGRES_CONN)
+
+    # Vider la table sans la supprimer
+    with engine.begin() as conn:
+        conn.execute(text("TRUNCATE TABLE public.products"))
+
+    # Charger les nouvelles données
     df.to_sql(
         name="products",
         con=engine,
         schema="public",
-        if_exists="replace",   # use "append" once stable
+        if_exists="append",
         index=False,
         method="multi",
         chunksize=500,
     )
-    logger.info(f"Loaded {len(df)} rows into PostgreSQL table 'public.products'")
+
+    logger.info(
+        f"Loaded {len(df)} rows into PostgreSQL table 'public.products'"
+    )
 
 # -------------------------
 # DAG

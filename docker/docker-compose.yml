@@ -1,0 +1,106 @@
+version: "3.8"
+
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.9.0-python3.11
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/price_db
+    AIRFLOW__WEBSERVER__SECRET_KEY: "my_fixed_secret_key_123"
+    _PIP_ADDITIONAL_REQUIREMENTS: "pandas sqlalchemy psycopg2-binary scipy statsmodels"
+  volumes:
+    - ../airflow/dags:/opt/airflow/dags
+    - ../data:/app/data
+    - airflow_logs:/opt/airflow/logs
+  networks:
+    - price-network
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: price-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: price_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ../scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    networks:
+      - price-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow -d price_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  airflow-init:
+    <<: *airflow-common
+    container_name: price-airflow-init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db migrate &&
+        airflow users create \
+          --username admin \
+          --password admin123 \
+          --firstname Admin \
+          --lastname User \
+          --role Admin \
+          --email admin@admin.com || true
+    restart: "no"
+
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: price-airflow-webserver
+    ports:
+      - "8080:8080"
+    command: webserver
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    restart: on-failure
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: price-airflow-scheduler
+    command: scheduler
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    restart: on-failure
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: price-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ..:/app
+    working_dir: /app
+    command: python scripts/validate_data.py
+    networks:
+      - price-network
+
+networks:
+  price-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  airflow_logs:

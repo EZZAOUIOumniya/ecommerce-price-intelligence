@@ -1,0 +1,12 @@
+price_intelligence:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost       # postgres (dans docker)
+      port: 5432
+      user: airflow
+      pass: airflow
+      dbname: price_db
+      schema: public
+      threads: 4

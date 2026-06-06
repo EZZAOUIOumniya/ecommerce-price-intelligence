@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: public
+    database: price_db
+    schema: public
+    tables:
+      - name: products
+
+models:
+  - name: stg_products
+    description: "Données produits nettoyées, prix=0 exclus"
+    columns:
+      - name: product_id
+        tests: [not_null]
+      - name: site
+        tests: [not_null]
+      - name: price
+        tests: [not_null]
+
+  - name: mart_price_by_category
+    description: "Agrégats prix par catégorie"
+
+  - name: mart_price_by_site
+    description: "Agrégats prix par site/source"
