@@ -4,7 +4,6 @@ from datetime import datetime
 import pandas as pd
 from sqlalchemy import create_engine, text
 from google.cloud import bigquery, bigtable
-#from google.cloud.bigtable import column_family, row_filters
 from airflow.utils.log.logging_mixin import LoggingMixin
 
 logger = LoggingMixin().log
