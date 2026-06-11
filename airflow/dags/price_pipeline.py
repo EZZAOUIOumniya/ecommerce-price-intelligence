@@ -247,7 +247,7 @@ def export_stats_for_fullstack():
 
     # Outliers
     outliers = df[df["is_outlier"]][
-    ["name", "brand", "category", "site", "price", "price_zscore"]
+        ["name", "brand", "category", "site", "price", "price_zscore"]
     ].sort_values("price", ascending=False).head(20)
 
     # Heatmap data
@@ -321,4 +321,9 @@ with DAG(
     )
 
     # validate → summary → transform → [postgres, bigquery, bigtable] en parallèle
-    validate_task >> summary_task >> transform_task >> [load_pg_task, load_bq_task, load_bt_task, export_stats_task]
+    validate_task >> summary_task >> transform_task 
+    transform_task >> [load_pg_task, 
+                       load_bq_task,
+                       load_bt_task,
+                       export_stats_task,
+    ]
