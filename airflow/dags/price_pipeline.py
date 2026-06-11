@@ -322,8 +322,4 @@ with DAG(
 
     # validate → summary → transform → [postgres, bigquery, bigtable] en parallèle
     validate_task >> summary_task >> transform_task 
-    transform_task >> [load_pg_task,
-                       load_bq_task,
-                       load_bt_task,
-                       export_stats_task,
-                       ]
+    transform_task >> [load_pg_task, load_bq_task, load_bt_task, export_stats_task]
