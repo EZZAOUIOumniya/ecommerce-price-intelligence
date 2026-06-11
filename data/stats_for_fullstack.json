@@ -1,0 +1,410 @@
+{
+  "summary": {
+    "total_products": 1763,
+    "sites": [
+      "iris",
+      "cosmostech",
+      "ultrapc",
+      "uno",
+      "electroplanet"
+    ],
+    "categories": 9,
+    "brands": 31,
+    "avg_price": 8751.0,
+    "min_price": 119.0,
+    "max_price": 74399.0,
+    "most_expensive_category": "pc_fixe",
+    "cheapest_category": "logiciel"
+  },
+  "stats_by_category": [
+    {
+      "category": "accessoire_tech",
+      "count": 3,
+      "mean": 2441.33,
+      "median": 2439.0,
+      "std": 1552.5,
+      "min": 890,
+      "max": 3995
+    },
+    {
+      "category": "imprimante",
+      "count": 4,
+      "mean": 3437.0,
+      "median": 3644.5,
+      "std": 1485.99,
+      "min": 1769,
+      "max": 4690
+    },
+    {
+      "category": "laptop",
+      "count": 961,
+      "mean": 12847.84,
+      "median": 10590.0,
+      "std": 9822.01,
+      "min": 180,
+      "max": 74399
+    },
+    {
+      "category": "logiciel",
+      "count": 2,
+      "mean": 547.0,
+      "median": 547.0,
+      "std": 601.04,
+      "min": 122,
+      "max": 972
+    },
+    {
+      "category": "moniteur",
+      "count": 706,
+      "mean": 3215.37,
+      "median": 1999.0,
+      "std": 3820.92,
+      "min": 119,
+      "max": 48290
+    },
+    {
+      "category": "pc_fixe",
+      "count": 3,
+      "mean": 13829.33,
+      "median": 15899.0,
+      "std": 4017.49,
+      "min": 9199,
+      "max": 16390
+    },
+    {
+      "category": "smartphone",
+      "count": 56,
+      "mean": 9460.98,
+      "median": 5874.0,
+      "std": 8517.58,
+      "min": 249,
+      "max": 34999
+    },
+    {
+      "category": "smartwatch",
+      "count": 11,
+      "mean": 5336.27,
+      "median": 4749.0,
+      "std": 3123.62,
+      "min": 2499,
+      "max": 11889
+    },
+    {
+      "category": "tablet",
+      "count": 17,
+      "mean": 9353.65,
+      "median": 8799.0,
+      "std": 7377.62,
+      "min": 480,
+      "max": 25699
+    }
+  ],
+  "stats_by_site": [
+    {
+      "site": "cosmostech",
+      "count": 17,
+      "mean": 2516.65,
+      "median": 1404.0,
+      "std": 2900.75,
+      "min": 561,
+      "max": 12182
+    },
+    {
+      "site": "electroplanet",
+      "count": 110,
+      "mean": 9960.18,
+      "median": 7149.0,
+      "std": 7796.6,
+      "min": 249,
+      "max": 34999
+    },
+    {
+      "site": "iris",
+      "count": 470,
+      "mean": 12707.12,
+      "median": 10899.0,
+      "std": 10994.69,
+      "min": 122,
+      "max": 74399
+    },
+    {
+      "site": "ultrapc",
+      "count": 1157,
+      "mean": 7124.35,
+      "median": 4290.0,
+      "std": 7746.98,
+      "min": 119,
+      "max": 64499
+    },
+    {
+      "site": "uno",
+      "count": 9,
+      "mean": 8265.22,
+      "median": 390.0,
+      "std": 16602.28,
+      "min": 299,
+      "max": 48290
+    }
+  ],
+  "top_brands": [
+    {
+      "brand": "MSI",
+      "count": 301
+    },
+    {
+      "brand": "ASUS",
+      "count": 242
+    },
+    {
+      "brand": "HP",
+      "count": 237
+    },
+    {
+      "brand": "LENOVO",
+      "count": 192
+    },
+    {
+      "brand": "DELL",
+      "count": 145
+    },
+    {
+      "brand": "SAMSUNG",
+      "count": 105
+    },
+    {
+      "brand": "AOC",
+      "count": 84
+    },
+    {
+      "brand": "APPLE",
+      "count": 63
+    },
+    {
+      "brand": "ACER",
+      "count": 44
+    },
+    {
+      "brand": "GIGABYTE",
+      "count": 34
+    }
+  ],
+  "outliers": [
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Zephyrus G16 (GU605CX-QR137W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 74399,
+      "price_zscore": 7.000694073456548
+    },
+    {
+      "name": "Razer Blade 16 i9-13950HX/32GB/2TB...",
+      "brand": "RAZER",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 64499,
+      "price_zscore": 5.932482112969803
+    },
+    {
+      "name": "Ordinateur portable Asus ProArt P16 (H7606WX-SE015W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 61399,
+      "price_zscore": 5.597991499080014
+    },
+    {
+      "name": "Ordinateur portable Gaming Lenovo Legion Pro 7 16IAX10H (83F50076FE)",
+      "brand": "LENOVO",
+      "category": "laptop",
+      "site": "iris",
+      "price": 54199,
+      "price_zscore": 4.8211100732714725
+    },
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Strix SCAR 16 (G635LW-RW169W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 52099,
+      "price_zscore": 4.594519657410648
+    },
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Zephyrus G16 (GU605CW-QR121W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 51699,
+      "price_zscore": 4.551359578199063
+    },
+    {
+      "name": "Razer Blade 16 Mercury i9-13950HX/32GB/1TB...",
+      "brand": "RAZER",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 48999,
+      "price_zscore": 4.260029043520859
+    },
+    {
+      "name": "Razer Blade 18 RZ09-05092FK4...",
+      "brand": "RAZER",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 48990,
+      "price_zscore": 4.259057941738599
+    },
+    {
+      "name": "MacBook Pro 14 Pouces (Puce M5) Apple M5 Max (CPU18-Core/GPU32-Core) 36Go 2 Tb Space Black",
+      "brand": "APPLE",
+      "category": "moniteur",
+      "site": "uno",
+      "price": 48290,
+      "price_zscore": 4.183527803118324
+    },
+    {
+      "name": "MSI Titan 18 HX A14VIG-006FR...",
+      "brand": "MSI",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 47999,
+      "price_zscore": 4.152128845491895
+    },
+    {
+      "name": "Razer Blade 16 i9-13950HX/32GB/1TB...",
+      "brand": "RAZER",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 46699,
+      "price_zscore": 4.011858588054242
+    },
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Zephyrus G16 (GU605CR-QR208W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 45599,
+      "price_zscore": 3.893168370222381
+    },
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Zephyrus G16 (GU605CR-QR151W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 45599,
+      "price_zscore": 3.893168370222381
+    },
+    {
+      "name": "ASUS ROG STRIX SCAR 18 G834JYR-R6037W...",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 43999,
+      "price_zscore": 3.720528053376039
+    },
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Zephyrus G16 (GU605CP-QR084W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 43499,
+      "price_zscore": 3.666577954361557
+    },
+    {
+      "name": "ASUS ROG STRIX SCAR 18 ( 2024 ) i9...",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 41990,
+      "price_zscore": 3.50375655553585
+    },
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Zephyrus G14 (GA403WW-QS123W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 41499,
+      "price_zscore": 3.4507775583036286
+    },
+    {
+      "name": "Ordinateur portable Gaming Asus ROG Strix G16 (G615LR-S5234W)",
+      "brand": "ASUS",
+      "category": "laptop",
+      "site": "iris",
+      "price": 41299,
+      "price_zscore": 3.429197518697836
+    },
+    {
+      "name": "Razer Blade 18 RZ09-05092FM4...",
+      "brand": "RAZER",
+      "category": "laptop",
+      "site": "ultrapc",
+      "price": 39990,
+      "price_zscore": 3.287956159477922
+    },
+    {
+      "name": "Ordinateur Portable Lenovo ThinkPad X9-14 Gen 1 Aura Edition (21QA0025FE)",
+      "brand": "LENOVO",
+      "category": "laptop",
+      "site": "iris",
+      "price": 39799,
+      "price_zscore": 3.267347221654389
+    }
+  ],
+  "heatmap": {
+    "cosmostech": {
+      "accessoire_tech": 0.0,
+      "imprimante": 0.0,
+      "laptop": 4860.0,
+      "logiciel": 0.0,
+      "moniteur": 928.0,
+      "pc_fixe": 0.0,
+      "smartphone": 0.0,
+      "smartwatch": 0.0,
+      "tablet": 0.0
+    },
+    "electroplanet": {
+      "accessoire_tech": 0.0,
+      "imprimante": 2599.0,
+      "laptop": 15999.0,
+      "logiciel": 0.0,
+      "moniteur": 2499.0,
+      "pc_fixe": 0.0,
+      "smartphone": 5874.0,
+      "smartwatch": 4749.0,
+      "tablet": 9199.0
+    },
+    "iris": {
+      "accessoire_tech": 2439.0,
+      "imprimante": 4690.0,
+      "laptop": 15249.0,
+      "logiciel": 547.0,
+      "moniteur": 1999.0,
+      "pc_fixe": 15899.0,
+      "smartphone": 0.0,
+      "smartwatch": 0.0,
+      "tablet": 564.5
+    },
+    "ultrapc": {
+      "accessoire_tech": 0.0,
+      "imprimante": 0.0,
+      "laptop": 7940.0,
+      "logiciel": 0.0,
+      "moniteur": 1999.0,
+      "pc_fixe": 0.0,
+      "smartphone": 0.0,
+      "smartwatch": 0.0,
+      "tablet": 0.0
+    },
+    "uno": {
+      "accessoire_tech": 0.0,
+      "imprimante": 0.0,
+      "laptop": 390.0,
+      "logiciel": 0.0,
+      "moniteur": 1144.5,
+      "pc_fixe": 0.0,
+      "smartphone": 0.0,
+      "smartwatch": 0.0,
+      "tablet": 0.0
+    }
+  }
+}

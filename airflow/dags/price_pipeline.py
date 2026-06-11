@@ -5,6 +5,7 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from google.cloud import bigquery, bigtable
 from airflow.utils.log.logging_mixin import LoggingMixin
+import json
 
 logger = LoggingMixin().log
 
@@ -218,6 +219,68 @@ def load_to_bigtable():
     logger.info(f"Loaded {len(df)} rows into Bigtable {BT_INSTANCE}/{BT_TABLE}")
 
 
+def export_stats_for_fullstack():
+    df = pd.read_csv(TRANSFORMED_PATH)
+    df = df.drop_duplicates(subset=["name", "price", "site"])
+
+    # Stats par catégorie
+    stats_cat = df.groupby("category")["price"].agg(
+        count="count",
+        mean="mean",
+        median="median",
+        std="std",
+        min="min",
+        max="max"
+    ).round(2).reset_index()
+
+    # Stats par site
+    stats_site = df.groupby("site")["price"].agg(
+        count="count",
+        mean="mean",
+        median="median",
+        std="std",
+        min="min",
+        max="max"
+    ).round(2).reset_index()
+
+    # Top 10 marques
+    top_brands = df[df["brand"] != "INCONNUE"]["brand"].value_counts().head(10)
+
+    # Outliers
+    outliers = df[df["is_outlier"] == True][
+        ["name", "brand", "category", "site", "price", "price_zscore"]
+    ].sort_values("price", ascending=False).head(20)
+
+    # Heatmap data
+    heatmap = df.groupby(["category", "site"])["price"].median().unstack(fill_value=0).round(2)
+
+    result = {
+        "summary": {
+            "total_products": int(len(df)),
+            "sites": df["site"].unique().tolist(),
+            "categories": df["category"].nunique(),
+            "brands": df["brand"].nunique(),
+            "avg_price": round(float(df["price"].mean()), 2),
+            "min_price": float(df["price"].min()),
+            "max_price": float(df["price"].max()),
+            "most_expensive_category": df.groupby("category")["price"].median().idxmax(),
+            "cheapest_category": df.groupby("category")["price"].median().idxmin(),
+        },
+        "stats_by_category": stats_cat.to_dict(orient="records"),
+        "stats_by_site": stats_site.to_dict(orient="records"),
+        "top_brands": top_brands.reset_index().rename(
+            columns={"index": "brand", "brand": "brand", "count": "count"}
+        ).to_dict(orient="records"),
+        "outliers": outliers.to_dict(orient="records"),
+        "heatmap": heatmap.to_dict(),
+    }
+
+    output_path = "/app/data/stats_for_fullstack.json"
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+
+    logger.info(f"Stats exported to {output_path}")
+
 # ─────────────────────────────────────────────
 # DAG DEFINITION
 # ─────────────────────────────────────────────
@@ -253,7 +316,11 @@ with DAG(
         task_id="load_to_bigtable",
         python_callable=load_to_bigtable,
     )
-
+    export_stats_task = PythonOperator(
+    task_id="export_stats_for_fullstack",
+    python_callable=export_stats_for_fullstack,
+   )
+    
     # validate → summary → transform → [postgres, bigquery, bigtable] en parallèle
     validate_task >> summary_task >> transform_task
-    transform_task >> [load_pg_task, load_bq_task, load_bt_task]
+    transform_task >> [load_pg_task, load_bq_task, load_bt_task, export_stats_task]
