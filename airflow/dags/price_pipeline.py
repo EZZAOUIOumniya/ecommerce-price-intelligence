@@ -218,7 +218,6 @@ def load_to_bigtable():
 
     logger.info(f"Loaded {len(df)} rows into Bigtable {BT_INSTANCE}/{BT_TABLE}")
 
-
 def export_stats_for_fullstack():
     df = pd.read_csv(TRANSFORMED_PATH)
     df = df.drop_duplicates(subset=["name", "price", "site"])
@@ -247,8 +246,8 @@ def export_stats_for_fullstack():
     top_brands = df[df["brand"] != "INCONNUE"]["brand"].value_counts().head(10)
 
     # Outliers
-    outliers = df[df["is_outlier"] == True][
-        ["name", "brand", "category", "site", "price", "price_zscore"]
+    outliers = df[df["is_outlier"]][
+    ["name", "brand", "category", "site", "price", "price_zscore"]
     ].sort_values("price", ascending=False).head(20)
 
     # Heatmap data
@@ -317,10 +316,9 @@ with DAG(
         python_callable=load_to_bigtable,
     )
     export_stats_task = PythonOperator(
-    task_id="export_stats_for_fullstack",
-    python_callable=export_stats_for_fullstack,
-   )
-    
+        task_id="export_stats_for_fullstack",
+        python_callable=export_stats_for_fullstack,
+    )
+
     # validate → summary → transform → [postgres, bigquery, bigtable] en parallèle
-    validate_task >> summary_task >> transform_task
-    transform_task >> [load_pg_task, load_bq_task, load_bt_task, export_stats_task]
+    validate_task >> summary_task >> transform_task >> [load_pg_task, load_bq_task, load_bt_task, export_stats_task]
