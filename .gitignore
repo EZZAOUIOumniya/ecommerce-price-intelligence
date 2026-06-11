@@ -226,14 +226,15 @@ postgres_data/
 gcp/
 
 # Terraform
-.terraform/
 **/.terraform/
-
+.terraform/
 *.tfstate
 *.tfstate.*
 crash.log
-
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# IMPORTANT
+.terraform.lock.hcl
