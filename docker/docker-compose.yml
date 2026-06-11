@@ -7,11 +7,16 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__LOAD_EXAMPLES: "False"
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/price_db
     AIRFLOW__WEBSERVER__SECRET_KEY: "my_fixed_secret_key_123"
-    _PIP_ADDITIONAL_REQUIREMENTS: "pandas sqlalchemy psycopg2-binary scipy statsmodels"
+    GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/gcp/application_default_credentials.json
+    _PIP_ADDITIONAL_REQUIREMENTS: >-
+      pandas sqlalchemy psycopg2-binary scipy statsmodels
+      google-cloud-bigquery google-cloud-bigquery-storage
+      google-cloud-bigtable pyarrow
   volumes:
     - ../airflow/dags:/opt/airflow/dags
     - ../data:/app/data
     - airflow_logs:/opt/airflow/logs
+    - ${APPDATA}/gcloud:/opt/airflow/gcp
   networks:
     - price-network
   depends_on:
@@ -20,6 +25,7 @@ x-airflow-common: &airflow-common
 
 services:
 
+  # ── PostgreSQL ────────────────────────────────────────────────────────
   postgres:
     image: postgres:15
     container_name: price-postgres
@@ -41,6 +47,30 @@ services:
       timeout: 5s
       retries: 10
 
+  # ── Apache NiFi (streaming / real-time ingestion) ─────────────────────
+  nifi:
+    image: apache/nifi:1.25.0
+    container_name: price-nifi
+    restart: on-failure
+    ports:
+      - "8443:8443"
+    environment:
+      SINGLE_USER_CREDENTIALS_USERNAME: admin
+      SINGLE_USER_CREDENTIALS_PASSWORD: admin123456789
+    volumes:
+      - nifi_data:/opt/nifi/nifi-current/conf
+      - ../nifi/flows:/opt/nifi/flows
+      - ../data:/app/data
+    networks:
+      - price-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k -f https://localhost:8443/nifi/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ── Airflow Init ──────────────────────────────────────────────────────
   airflow-init:
     <<: *airflow-common
     container_name: price-airflow-init
@@ -58,6 +88,7 @@ services:
           --email admin@admin.com || true
     restart: "no"
 
+  # ── Airflow Webserver ─────────────────────────────────────────────────
   airflow-webserver:
     <<: *airflow-common
     container_name: price-airflow-webserver
@@ -71,6 +102,7 @@ services:
         condition: service_completed_successfully
     restart: on-failure
 
+  # ── Airflow Scheduler ─────────────────────────────────────────────────
   airflow-scheduler:
     <<: *airflow-common
     container_name: price-airflow-scheduler
@@ -82,6 +114,7 @@ services:
         condition: service_completed_successfully
     restart: on-failure
 
+  # ── App (validate + transform) ────────────────────────────────────────
   app:
     build:
       context: ..
@@ -104,3 +137,4 @@ networks:
 volumes:
   postgres_data:
   airflow_logs:
+  nifi_data:

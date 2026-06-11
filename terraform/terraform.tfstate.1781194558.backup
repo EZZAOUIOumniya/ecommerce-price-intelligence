@@ -1,0 +1,314 @@
+{
+  "version": 4,
+  "terraform_version": "1.15.6",
+  "serial": 10,
+  "lineage": "6308bff5-cdb4-21a4-5fb6-1b3c4615c017",
+  "outputs": {
+    "bigquery_table": {
+      "value": null,
+      "type": "string"
+    },
+    "bigtable_instance": {
+      "value": "price-intelligence",
+      "type": "string"
+    },
+    "service_account_email": {
+      "value": "airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_bigquery_dataset",
+      "name": "price_intelligence",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "access": [
+              {
+                "dataset": [],
+                "domain": "",
+                "group_by_email": "",
+                "iam_member": "",
+                "role": "OWNER",
+                "routine": [],
+                "special_group": "",
+                "user_by_email": "hibaidderhem@gmail.com",
+                "view": []
+              },
+              {
+                "dataset": [],
+                "domain": "",
+                "group_by_email": "",
+                "iam_member": "",
+                "role": "OWNER",
+                "routine": [],
+                "special_group": "projectOwners",
+                "user_by_email": "",
+                "view": []
+              },
+              {
+                "dataset": [],
+                "domain": "",
+                "group_by_email": "",
+                "iam_member": "",
+                "role": "READER",
+                "routine": [],
+                "special_group": "projectReaders",
+                "user_by_email": "",
+                "view": []
+              },
+              {
+                "dataset": [],
+                "domain": "",
+                "group_by_email": "",
+                "iam_member": "",
+                "role": "WRITER",
+                "routine": [],
+                "special_group": "projectWriters",
+                "user_by_email": "",
+                "view": []
+              }
+            ],
+            "creation_time": 1781164523042,
+            "dataset_id": "price_intelligence",
+            "default_collation": "",
+            "default_encryption_configuration": [],
+            "default_partition_expiration_ms": 0,
+            "default_table_expiration_ms": 0,
+            "delete_contents_on_destroy": false,
+            "description": "Price Intelligence Platform",
+            "effective_labels": {},
+            "etag": "1DV0UZ5mPq2n/5su9ZoyRQ==",
+            "external_dataset_reference": [],
+            "friendly_name": "",
+            "id": "projects/lyrical-lyceum-499123-c2/datasets/price_intelligence",
+            "is_case_insensitive": false,
+            "labels": {},
+            "last_modified_time": 1781164523042,
+            "location": "US",
+            "max_time_travel_hours": "168",
+            "project": "lyrical-lyceum-499123-c2",
+            "resource_tags": {},
+            "self_link": "https://bigquery.googleapis.com/bigquery/v2/projects/lyrical-lyceum-499123-c2/datasets/price_intelligence",
+            "storage_billing_model": "",
+            "terraform_labels": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMCJ9"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_bigtable_instance",
+      "name": "price_intelligence",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "cluster": [
+              {
+                "autoscaling_config": [],
+                "cluster_id": "price-intelligence-cluster",
+                "kms_key_name": "",
+                "num_nodes": 1,
+                "state": "READY",
+                "storage_type": "SSD",
+                "zone": "europe-west1-b"
+              }
+            ],
+            "deletion_protection": false,
+            "display_name": "price-intelligence",
+            "effective_labels": {},
+            "force_destroy": false,
+            "id": "projects/lyrical-lyceum-499123-c2/instances/price-intelligence",
+            "instance_type": "PRODUCTION",
+            "labels": null,
+            "name": "price-intelligence",
+            "project": "lyrical-lyceum-499123-c2",
+            "terraform_labels": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJyZWFkIjozNjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjM2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_bigtable_table",
+      "name": "price_time_series",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "automated_backup_policy": [],
+            "change_stream_retention": null,
+            "column_family": [
+              {
+                "family": "agg_cf"
+              },
+              {
+                "family": "metadata_cf"
+              },
+              {
+                "family": "price_cf"
+              }
+            ],
+            "deletion_protection": "UNPROTECTED",
+            "id": "projects/lyrical-lyceum-499123-c2/instances/price-intelligence/tables/price_time_series",
+            "instance_name": "price-intelligence",
+            "name": "price_time_series",
+            "project": "lyrical-lyceum-499123-c2",
+            "split_keys": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "google_bigtable_instance.price_intelligence"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_iam_member",
+      "name": "bq_editor",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZT/H59b20=",
+            "id": "lyrical-lyceum-499123-c2/roles/bigquery.dataEditor/serviceAccount:airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "member": "serviceAccount:airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "project": "lyrical-lyceum-499123-c2",
+            "role": "roles/bigquery.dataEditor"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_service_account.airflow_sa"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_iam_member",
+      "name": "bt_editor",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZT/H59b20=",
+            "id": "lyrical-lyceum-499123-c2/roles/bigtable.user/serviceAccount:airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "member": "serviceAccount:airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "project": "lyrical-lyceum-499123-c2",
+            "role": "roles/bigtable.user"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_service_account.airflow_sa"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_account",
+      "name": "airflow_sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "airflow-sa",
+            "create_ignore_already_exists": null,
+            "description": "",
+            "disabled": false,
+            "display_name": "Airflow Service Account",
+            "email": "airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "id": "projects/lyrical-lyceum-499123-c2/serviceAccounts/airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "member": "serviceAccount:airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "name": "projects/lyrical-lyceum-499123-c2/serviceAccounts/airflow-sa@lyrical-lyceum-499123-c2.iam.gserviceaccount.com",
+            "project": "lyrical-lyceum-499123-c2",
+            "timeouts": null,
+            "unique_id": "112115776291470443120"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_storage_bucket",
+      "name": "price_data",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "autoclass": [],
+            "cors": [],
+            "custom_placement_config": [],
+            "default_event_based_hold": false,
+            "effective_labels": {},
+            "enable_object_retention": false,
+            "encryption": [],
+            "force_destroy": true,
+            "id": "lyrical-lyceum-499123-c2-price-data",
+            "labels": null,
+            "lifecycle_rule": [],
+            "location": "EUROPE-WEST1",
+            "logging": [],
+            "name": "lyrical-lyceum-499123-c2-price-data",
+            "project": "lyrical-lyceum-499123-c2",
+            "project_number": 1086643884319,
+            "public_access_prevention": "inherited",
+            "requester_pays": false,
+            "retention_policy": [],
+            "rpo": null,
+            "self_link": "https://www.googleapis.com/storage/v1/b/lyrical-lyceum-499123-c2-price-data",
+            "soft_delete_policy": [
+              {
+                "effective_time": "2026-06-11T16:02:33.793Z",
+                "retention_duration_seconds": 604800
+              }
+            ],
+            "storage_class": "STANDARD",
+            "terraform_labels": {},
+            "timeouts": null,
+            "uniform_bucket_level_access": true,
+            "url": "gs://lyrical-lyceum-499123-c2-price-data",
+            "versioning": [],
+            "website": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsInJlYWQiOjI0MDAwMDAwMDAwMCwidXBkYXRlIjoyNDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjIifQ=="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

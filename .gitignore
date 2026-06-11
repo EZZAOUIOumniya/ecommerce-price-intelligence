@@ -222,3 +222,16 @@ data/transformed.csv
 airflow/logs/
 postgres_data/
 *.log
+
+gcp/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl

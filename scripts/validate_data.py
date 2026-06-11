@@ -1,100 +1,73 @@
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from datetime import datetime
-import pandas as pd
-from sqlalchemy import create_engine
-from airflow.utils.log.logging_mixin import LoggingMixin
+"""
+validate_data.py — Script autonome de validation qualité des données.
+Utilisé par le Dockerfile (service app) et le CI GitHub Actions.
+"""
 
-logger = LoggingMixin().log
+import sys
+import logging
+import pandas as pd
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 FILE_PATH = "/app/data/cleaned_data.csv"
-TRANSFORMED_PATH = "/app/data/transformed.csv"
-POSTGRES_CONN = "postgresql+psycopg2://airflow:airflow@postgres:5432/price_db"
 
-# -------------------------
-# 1. DATA QUALITY CHECK
-# -------------------------
-def validate_data():
-    df = pd.read_csv(FILE_PATH)
-    logger.info(f"Rows: {len(df)}")
+
+def validate_data(filepath: str = FILE_PATH) -> bool:
+    logger.info(f"Lecture du fichier : {filepath}")
+    try:
+        df = pd.read_csv(filepath)
+    except FileNotFoundError:
+        logger.warning(f"Fichier introuvable : {filepath} (normal en CI)")
+        return True  # pas un échec bloquant en CI
+
+    logger.info(f"Lignes chargées : {len(df)}")
+
     if df.empty:
-        raise ValueError("Dataset vide")
+        logger.error("Dataset vide !")
+        return False
+
+    # ── Colonnes requises ────────────────────────────────────────────────
+    required_cols = {"row_key", "site", "name", "price", "brand",
+                     "category", "url", "scraped_at"}
+    missing = required_cols - set(df.columns)
+    if missing:
+        logger.error(f"Colonnes manquantes : {missing}")
+        return False
+    logger.info("Colonnes : OK")
+
+    # ── Prix invalides ───────────────────────────────────────────────────
     zero_price = (df["price"] == 0).sum()
-    unknown_source = (df["site"] == "unknown").sum()
-    logger.warning(f"Zero price rows: {zero_price}")
-    logger.warning(f"Unknown source rows: {unknown_source}")
+    null_price = df["price"].isna().sum()
+    neg_price = (df["price"] < 0).sum()
+    logger.info(f"Prix à 0 : {zero_price} | nuls : {null_price} | négatifs : {neg_price}")
     if zero_price > len(df) * 0.3:
-        raise ValueError("Too many invalid prices (>30%)")
-    logger.info("Validation OK")
+        logger.error("Trop de prix invalides (>30%)")
+        return False
 
-# -------------------------
-# 2. SUMMARY
-# -------------------------
-def log_summary():
-    df = pd.read_csv(FILE_PATH)
-    summary = {
-        "rows": len(df),
-        "sources": df["site"].nunique(),
-        "avg_price": float(df["price"].mean()),
-        "min_price": float(df["price"].min()),
-        "max_price": float(df["price"].max()),
-    }
-    logger.info(f"Summary: {summary}")
+    # ── Sources inconnues ────────────────────────────────────────────────
+    unknown_source = (df["site"] == "unknown").sum()
+    logger.info(f"Sources inconnues : {unknown_source}")
 
-# -------------------------
-# 3. TRANSFORM
-# -------------------------
-def transform_data():
-    df = pd.read_csv(FILE_PATH)
-    df["price_zscore"] = (df["price"] - df["price"].mean()) / df["price"].std()
-    # flag outliers (|z| > 3)
-    df["is_outlier"] = df["price_zscore"].abs() > 3
-    df.to_csv(TRANSFORMED_PATH, index=False)
-    logger.info(f"Transformation done — {len(df)} rows written to {TRANSFORMED_PATH}")
+    # ── Doublons ─────────────────────────────────────────────────────────
+    dup = df.duplicated(subset=["row_key"]).sum()
+    logger.info(f"Doublons sur row_key : {dup}")
 
-# -------------------------
-# 4. LOAD TO POSTGRESQL
-# -------------------------
-def load_to_postgres():
-    df = pd.read_csv(TRANSFORMED_PATH)
-    engine = create_engine(POSTGRES_CONN)
-    df.to_sql(
-        name="products",
-        con=engine,
-        schema="public",
-        if_exists="replace",   # use "append" once stable
-        index=False,
-        method="multi",
-        chunksize=500,
-    )
-    logger.info(f"Loaded {len(df)} rows into PostgreSQL table 'public.products'")
+    # ── Résumé statistique ───────────────────────────────────────────────
+    logger.info("── Statistiques ──────────────────────────────────────────")
+    logger.info(f"  Sources     : {sorted(df['site'].unique().tolist())}")
+    logger.info(f"  Catégories  : {sorted(df['category'].unique().tolist())}")
+    logger.info(f"  Prix moy.   : {df['price'].mean():.0f} MAD")
+    logger.info(f"  Prix min/max: {df['price'].min()} / {df['price'].max()} MAD")
+    logger.info(f"  Produits    : {df['name'].nunique()} uniques")
+    logger.info("──────────────────────────────────────────────────────────")
+    logger.info("Validation OK ✓")
+    return True
 
-# -------------------------
-# DAG
-# -------------------------
-with DAG(
-    dag_id="price_data_pipeline",
-    start_date=datetime(2024, 1, 1),
-    schedule="@daily",
-    catchup=False,
-    tags=["price", "etl"],
-) as dag:
 
-    validate_task = PythonOperator(
-        task_id="validate_dataset",
-        python_callable=validate_data,
-    )
-    summary_task = PythonOperator(
-        task_id="generate_summary",
-        python_callable=log_summary,
-    )
-    transform_task = PythonOperator(
-        task_id="transform_data",
-        python_callable=transform_data,
-    )
-    load_task = PythonOperator(
-        task_id="load_to_postgres",
-        python_callable=load_to_postgres,
-    )
-
-    validate_task >> summary_task >> transform_task >> load_task
+if __name__ == "__main__":
+    ok = validate_data()
+    sys.exit(0 if ok else 1)

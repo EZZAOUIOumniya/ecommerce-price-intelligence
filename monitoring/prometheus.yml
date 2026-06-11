@@ -1,7 +1,24 @@
 global:
   scrape_interval: 15s
+  evaluation_interval: 15s
 
 scrape_configs:
+  # Airflow webserver — nom du container dans le réseau Docker
   - job_name: 'airflow'
     static_configs:
-      - targets: ['airflow:8080']
+      - targets: ['price-airflow-webserver:8080']
+    metrics_path: '/metrics'
+    scheme: http
+
+  # PostgreSQL (via postgres_exporter si ajouté)
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['price-postgres:5432']
+
+  # NiFi (API REST NiFi expose des métriques)
+  - job_name: 'nifi'
+    static_configs:
+      - targets: ['price-nifi:8443']
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true

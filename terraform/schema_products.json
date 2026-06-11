@@ -1,0 +1,14 @@
+[
+  {"name": "product_id",         "type": "STRING",    "mode": "NULLABLE"},
+  {"name": "name",               "type": "STRING",    "mode": "NULLABLE"},
+  {"name": "brand",              "type": "STRING",    "mode": "NULLABLE"},
+  {"name": "category",           "type": "STRING",    "mode": "NULLABLE"},
+  {"name": "site",               "type": "STRING",    "mode": "NULLABLE"},
+  {"name": "price",              "type": "INTEGER",   "mode": "NULLABLE"},
+  {"name": "url",                "type": "STRING",    "mode": "NULLABLE"},
+  {"name": "scraped_at",         "type": "TIMESTAMP", "mode": "NULLABLE"},
+  {"name": "category_avg_price", "type": "FLOAT",     "mode": "NULLABLE"},
+  {"name": "price_deviation",    "type": "FLOAT",     "mode": "NULLABLE"},
+  {"name": "price_zscore",       "type": "FLOAT",     "mode": "NULLABLE"},
+  {"name": "is_outlier",         "type": "BOOLEAN",   "mode": "NULLABLE"}
+]

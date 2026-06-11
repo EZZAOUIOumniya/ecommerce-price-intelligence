@@ -6,3 +6,6 @@ sqlalchemy
 psycopg2-binary
 scipy
 statsmodels
+google-cloud-bigquery
+google-cloud-bigquery-storage
+pyarrow

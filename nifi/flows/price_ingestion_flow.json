@@ -1,0 +1,18 @@
+{
+  "flowContents": {
+    "identifier": "price-ingestion-flow",
+    "name": "Price Ingestion Flow",
+    "comments": "NiFi flow for real-time price data ingestion",
+    "position": {"x": 0, "y": 0},
+    "processGroups": [],
+    "remoteProcessGroups": [],
+    "processors": [],
+    "inputPorts": [],
+    "outputPorts": [],
+    "connections": [],
+    "labels": [],
+    "funnels": []
+  },
+  "parameterContexts": [],
+  "flowEncodingVersion": "1.0"
+}
