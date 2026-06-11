@@ -326,4 +326,4 @@ with DAG(
                        load_bq_task,
                        load_bt_task,
                        export_stats_task,
-    ]
+                       ]
