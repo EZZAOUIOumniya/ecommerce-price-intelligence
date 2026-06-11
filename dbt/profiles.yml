@@ -1,0 +1,11 @@
+price_intelligence:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: lyrical-lyceum-499123-c2
+      dataset: price_intelligence
+      location: US
+      threads: 4
+      timeout_seconds: 300

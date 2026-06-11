@@ -1,0 +1,21 @@
+name: price_intelligence
+version: '1.0.0'
+config-version: 2
+
+profile: price_intelligence
+
+model-paths: ["models"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  price_intelligence:
+    staging:
+      +materialized: view
+    cleaned:
+      +materialized: table
+    aggregated:
+      +materialized: table
