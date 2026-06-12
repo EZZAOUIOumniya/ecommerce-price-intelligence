@@ -2,17 +2,201 @@
   "flowContents": {
     "identifier": "price-ingestion-flow",
     "name": "Price Ingestion Flow",
-    "comments": "NiFi flow for real-time price data ingestion",
+    "comments": "Real-time price data ingestion: CSV → Transform → Bigtable",
     "position": {"x": 0, "y": 0},
     "processGroups": [],
     "remoteProcessGroups": [],
-    "processors": [],
+    "processors": [
+      {
+        "identifier": "proc-001",
+        "name": "GetFile",
+        "type": "org.apache.nifi.processors.standard.GetFile",
+        "position": {"x": 100, "y": 100},
+        "config": {
+          "properties": {
+            "Input Directory": "/app/data",
+            "File Filter": "cleaned_data\\.csv",
+            "Keep Source File": "true",
+            "Recurse Subdirectories": "false",
+            "Polling Interval": "30 sec"
+          },
+          "schedulingPeriod": "30 sec",
+          "schedulingStrategy": "TIMER_DRIVEN",
+          "comments": "Surveille le dossier /app/data pour nouveaux fichiers CSV"
+        }
+      },
+      {
+        "identifier": "proc-002",
+        "name": "SplitRecord",
+        "type": "org.apache.nifi.processors.standard.SplitRecord",
+        "position": {"x": 400, "y": 100},
+        "config": {
+          "properties": {
+            "Record Reader": "CSVReader",
+            "Record Writer": "JsonRecordSetWriter",
+            "Records Per Split": "500"
+          },
+          "schedulingPeriod": "0 sec",
+          "schedulingStrategy": "EVENT_DRIVEN",
+          "comments": "Divise le CSV en batches de 500 lignes"
+        }
+      },
+      {
+        "identifier": "proc-003",
+        "name": "JoltTransformRecord",
+        "type": "org.apache.nifi.processors.standard.JoltTransformRecord",
+        "position": {"x": 700, "y": 100},
+        "config": {
+          "properties": {
+            "Record Reader": "JsonTreeReader",
+            "Record Writer": "JsonRecordSetWriter",
+            "Jolt Transformation DSL": "shift",
+            "Jolt Specification": "[{\"operation\": \"shift\", \"spec\": {\"*\": {\"row_key\": \"product_id\", \"site\": \"site\", \"name\": \"name\", \"price\": \"price\", \"brand\": \"brand\", \"category\": \"category\", \"url\": \"url\", \"scraped_at\": \"scraped_at\"}}}]"
+          },
+          "schedulingPeriod": "0 sec",
+          "schedulingStrategy": "EVENT_DRIVEN",
+          "comments": "Transforme et renomme row_key → product_id"
+        }
+      },
+      {
+        "identifier": "proc-004",
+        "name": "RouteOnAttribute",
+        "type": "org.apache.nifi.processors.standard.RouteOnAttribute",
+        "position": {"x": 1000, "y": 100},
+        "config": {
+          "properties": {
+            "Routing Strategy": "Route to Property name",
+            "valid_price": "${price:gt(0)}",
+            "known_site": "${site:isEmpty():not()}"
+          },
+          "schedulingPeriod": "0 sec",
+          "schedulingStrategy": "EVENT_DRIVEN",
+          "comments": "Filtre les enregistrements invalides (prix=0 ou site vide)"
+        }
+      },
+      {
+        "identifier": "proc-005",
+        "name": "PutBigtable",
+        "type": "org.apache.nifi.processors.gcp.bigtable.PutBigtable",
+        "position": {"x": 1300, "y": 100},
+        "config": {
+          "properties": {
+            "Project ID": "lyrical-lyceum-499123-c2",
+            "Instance ID": "price-intelligence",
+            "Table Name": "price_time_series",
+            "Row ID": "${product_id}#${scraped_at}",
+            "Column Family Price": "price_cf",
+            "Column Family Metadata": "metadata_cf"
+          },
+          "schedulingPeriod": "0 sec",
+          "schedulingStrategy": "EVENT_DRIVEN",
+          "comments": "Écrit dans Bigtable — row_key: product_id#scraped_at"
+        }
+      },
+      {
+        "identifier": "proc-006",
+        "name": "LogMessage_Success",
+        "type": "org.apache.nifi.processors.standard.LogMessage",
+        "position": {"x": 1300, "y": 300},
+        "config": {
+          "properties": {
+            "Log Level": "info",
+            "Log Message": "Record ingested successfully into Bigtable: ${filename}"
+          },
+          "schedulingPeriod": "0 sec",
+          "schedulingStrategy": "EVENT_DRIVEN"
+        }
+      },
+      {
+        "identifier": "proc-007",
+        "name": "LogMessage_Failure",
+        "type": "org.apache.nifi.processors.standard.LogMessage",
+        "position": {"x": 1000, "y": 300},
+        "config": {
+          "properties": {
+            "Log Level": "error",
+            "Log Message": "Failed to process record: ${filename} — ${failure.reason}"
+          },
+          "schedulingPeriod": "0 sec",
+          "schedulingStrategy": "EVENT_DRIVEN"
+        }
+      }
+    ],
+    "connections": [
+      {
+        "identifier": "conn-001",
+        "name": "GetFile → SplitRecord",
+        "source": {"id": "proc-001", "port": "success"},
+        "destination": {"id": "proc-002", "port": "input"},
+        "selectedRelationships": ["success"]
+      },
+      {
+        "identifier": "conn-002",
+        "name": "SplitRecord → JoltTransform",
+        "source": {"id": "proc-002", "port": "splits"},
+        "destination": {"id": "proc-003", "port": "input"},
+        "selectedRelationships": ["splits"]
+      },
+      {
+        "identifier": "conn-003",
+        "name": "JoltTransform → RouteOnAttribute",
+        "source": {"id": "proc-003", "port": "success"},
+        "destination": {"id": "proc-004", "port": "input"},
+        "selectedRelationships": ["success"]
+      },
+      {
+        "identifier": "conn-004",
+        "name": "RouteOnAttribute → PutBigtable",
+        "source": {"id": "proc-004", "port": "valid_price"},
+        "destination": {"id": "proc-005", "port": "input"},
+        "selectedRelationships": ["valid_price"]
+      },
+      {
+        "identifier": "conn-005",
+        "name": "PutBigtable → LogSuccess",
+        "source": {"id": "proc-005", "port": "success"},
+        "destination": {"id": "proc-006", "port": "input"},
+        "selectedRelationships": ["success"]
+      },
+      {
+        "identifier": "conn-006",
+        "name": "RouteOnAttribute → LogFailure",
+        "source": {"id": "proc-004", "port": "unmatched"},
+        "destination": {"id": "proc-007", "port": "input"},
+        "selectedRelationships": ["unmatched"]
+      },
+      {
+        "identifier": "conn-007",
+        "name": "PutBigtable → LogFailure",
+        "source": {"id": "proc-005", "port": "failure"},
+        "destination": {"id": "proc-007", "port": "input"},
+        "selectedRelationships": ["failure"]
+      }
+    ],
+    "labels": [
+      {
+        "identifier": "label-001",
+        "label": "INGESTION LAYER\nGetFile → Split → Transform → Validate → Bigtable",
+        "position": {"x": 80, "y": 40},
+        "width": 1400,
+        "height": 60
+      }
+    ],
+    "funnels": [],
     "inputPorts": [],
-    "outputPorts": [],
-    "connections": [],
-    "labels": [],
-    "funnels": []
+    "outputPorts": []
   },
-  "parameterContexts": [],
+  "parameterContexts": [
+    {
+      "identifier": "param-001",
+      "name": "GCP Parameters",
+      "parameters": [
+        {"name": "project_id",    "value": "lyrical-lyceum-499123-c2"},
+        {"name": "instance_id",   "value": "price-intelligence"},
+        {"name": "table_name",    "value": "price_time_series"},
+        {"name": "data_path",     "value": "/app/data"}
+      ]
+    }
+  ],
   "flowEncodingVersion": "1.0"
 }

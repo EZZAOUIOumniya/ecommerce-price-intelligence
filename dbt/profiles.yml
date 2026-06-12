@@ -2,11 +2,9 @@ price_intelligence:
   target: dev
   outputs:
     dev:
-      type: postgres
-      host: localhost       # postgres (dans docker)
-      port: 5432
-      user: airflow
-      pass: airflow
-      dbname: price_db
-      schema: public
+      type: bigquery
+      method: oauth
+      project: lyrical-lyceum-499123-c2
+      dataset: price_intelligence
       threads: 4
+      timeout_seconds: 300
