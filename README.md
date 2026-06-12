@@ -2,7 +2,7 @@
 
 # 🛒 E-commerce Price Intelligence Platform
 
-> 🎥 **[Voir la vidéo de démonstration (7 min)](https://drive.google.com/file/d/10yawaOQKosvffT9rtsFCoWk2xBi9l5CV/view?usp=sharing)**
+> 🎥 **[Voir la vidéo de démonstration (3 min)](https://drive.google.com/file/d/10yawaOQKosvffT9rtsFCoWk2xBi9l5CV/view?usp=sharing)**
 
 > Hybrid Batch + Streaming Data Pipeline — Real-Time Price Monitoring & Analytics()
 
