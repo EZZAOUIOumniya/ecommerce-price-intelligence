@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 # ✅ REMOVED: os.environ["BIGTABLE_EMULATOR_HOST"] = "bigtable:8086"
 # ✅ Read real GCP values from environment (set in docker-compose via .env)
-PROJECT_ID = os.environ.get("GCP_PROJECT_ID",      "lyrical-lyceum-499123-c2")
+PROJECT_ID = os.environ.get("GCP_PROJECT_ID", "lyrical-lyceum-499123-c2")
 INSTANCE_ID = os.environ.get("BIGTABLE_INSTANCE_ID", "price-intel")
 
 BATCH_SIZE = 500  # ✅ Real Bigtable supports larger batches (was 200 for emulator)
@@ -88,8 +88,8 @@ def get_source(item) -> str:
 
 def build_row(table, item, source):
     # ✅ supports both 'product_id' (your data) and 'id' (generic)
-    item_id    = re.sub(r"[^a-z0-9_-]", "_", str(item.get('product_id') or item.get('id', 'unknown')))
-    raw_date   = str(item.get('scraped_at', '0000'))
+    item_id = re.sub(r"[^a-z0-9_-]", "_", str(item.get('product_id') or item.get('id', 'unknown')))
+    raw_date = str(item.get('scraped_at', '0000'))
     scraped_at = raw_date.replace(" ", "T").replace(":", "-")
 
     row_key = f"{source}#{item_id}#{scraped_at}".encode()
@@ -170,7 +170,7 @@ def run():
                     )
                     failed += 1
 
-        total   = len(rows)
+        total = len(rows)
         written = total - failed
 
         sys.stderr.write(f"✅ {written}/{total} rows written to Bigtable"

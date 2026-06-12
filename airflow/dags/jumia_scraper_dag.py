@@ -61,7 +61,7 @@ with DAG(
                     'HOME': '/home/airflow',
                 },
                 append_env=True,
-                execution_timeout=timedelta(hours = 2),
+                execution_timeout=timedelta(hours=2),
                 do_xcom_push=True,
             )
 
