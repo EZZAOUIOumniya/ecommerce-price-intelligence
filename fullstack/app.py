@@ -103,19 +103,74 @@ st.markdown("""
 # ─────────────────────────────────────────
 @st.cache_data(ttl=60)
 def load_price_data():
-    df = pd.read_csv("data/cleaned_data.csv")
+    """Simulates data exported from BigTable via dbt pipeline."""
+    np.random.seed(42)
+    categories = ["Smartphones", "Laptops", "Audio", "Cameras", "Tablets"]
+    platforms  = ["Jumia", "Glovo", "Amazon.ma"]
+    products = {
+        "Smartphones": [
+            "Samsung Galaxy S24", "iPhone 15 Pro", "Xiaomi 14", "Redmi Note 13",
+            "OPPO Reno 11", "Tecno Camon 20",
+        ],
+        "Laptops": [
+            "HP Pavilion 15", "Dell Inspiron 15", "Lenovo IdeaPad 5",
+            "ASUS VivoBook 15", "Acer Aspire 5",
+        ],
+        "Audio": [
+            "Sony WH-1000XM5", "JBL Tune 510BT", "Bose QC45",
+            "Samsung Galaxy Buds2", "Xiaomi Buds 4 Pro",
+        ],
+        "Cameras": [
+            "Canon EOS R50", "Sony ZV-E10", "Nikon Z30", "Fujifilm X-S20",
+        ],
+        "Tablets": [
+            "iPad Air (M2)", "Samsung Galaxy Tab S9", "Lenovo Tab P12",
+            "Xiaomi Pad 6 Pro",
+        ],
+    }
 
-    # normalisation pour ton dashboard
-    df = df.rename(columns={
-        "scraped_date": "date",
-        "scraped_at": "timestamp",
-        "site": "platform"
-    })
+    base_prices = {
+        "Samsung Galaxy S24": 8500, "iPhone 15 Pro": 14500, "Xiaomi 14": 7200,
+        "Redmi Note 13": 2800, "OPPO Reno 11": 4200, "Tecno Camon 20": 2100,
+        "HP Pavilion 15": 5500, "Dell Inspiron 15": 6200, "Lenovo IdeaPad 5": 5800,
+        "ASUS VivoBook 15": 5100, "Acer Aspire 5": 4900,
+        "Sony WH-1000XM5": 3200, "JBL Tune 510BT": 550, "Bose QC45": 2800,
+        "Samsung Galaxy Buds2": 900, "Xiaomi Buds 4 Pro": 600,
+        "Canon EOS R50": 7800, "Sony ZV-E10": 6500, "Nikon Z30": 7200,
+        "Fujifilm X-S20": 8900,
+        "iPad Air (M2)": 9200, "Samsung Galaxy Tab S9": 8400,
+        "Lenovo Tab P12": 3100, "Xiaomi Pad 6 Pro": 3500,
+    }
 
-    df["date"] = pd.to_datetime(df["date"]).dt.date
-    df["price_change_pct"] = df.groupby(["name", "platform"])["price"].pct_change() * 100
-    df["price_change_pct"] = df["price_change_pct"].fillna(0)
+    records = []
+    now = datetime.now()
+    for cat, prods in products.items():
+        for prod in prods:
+            for plat in platforms:
+                for day in range(30):
+                    base   = base_prices.get(prod, 5000) * (
+                        1 + random.uniform(-0.08, 0.08)
+                    )
+                    ts = now - timedelta(days=29 - day)
+                    price  = base * (1 + np.random.normal(0, 0.012))
+                    rating = round(np.clip(np.random.normal(4.1, 0.5), 1, 5), 1)
+                    reviews = int(np.clip(np.random.normal(450, 300), 10, 3000))
+                    records.append({
+                        "timestamp": ts,
+                        "date": ts.date(),
+                        "name": prod,
+                        "category": cat,
+                        "site": plat,
+                        "price": round(price, 2),
+                        "rating": rating,
+                        "reviews": reviews,
+                        "currency": "MAD",
+                        "in_stock": random.random() > 0.1,
+                    })
 
+    df = pd.DataFrame(records)
+    df["price_change_pct"] = df.groupby(["name", "site"])["price"].pct_change() * 100
+    df["price_change_pct"] = df["price_change_pct"].fillna(0).round(2)
     return df
 
 
@@ -144,8 +199,8 @@ df    = load_price_data()
 stats = load_stats_json()
 
 today    = df[df["date"] == df["date"].max()]
-latest   = today.groupby(["product", "category", "platform"])["price"].mean().reset_index()
-all_time = df.groupby(["product", "platform"])["price"].agg(["min", "max", "mean", "std"]).reset_index()
+latest = today.groupby(["name", "category", "site"])["price"].mean().reset_index()
+all_time = df.groupby(["name", "site"])["price"].agg(["min", "max", "mean", "std"]).reset_index()
 
 # ─────────────────────────────────────────
 # SIDEBAR
@@ -166,8 +221,8 @@ with st.sidebar:
     )
     platforms = st.multiselect(
         "Platform",
-        options=df["platform"].unique().tolist(),
-        default=df["platform"].unique().tolist(),
+        options=df["site"].unique().tolist(),
+        default=df["site"].unique().tolist(),
     )
     date_range = st.slider(
         "Days back",
@@ -195,7 +250,7 @@ with st.sidebar:
 cutoff = df["date"].max() - timedelta(days=date_range - 1)
 filt = df[
     df["category"].isin(categories)
-    & df["platform"].isin(platforms)
+    & df["site"].isin(platforms)
     & (df["date"] >= cutoff)
 ].copy()
 
@@ -215,7 +270,7 @@ st.markdown(
 # KPI ROW
 # ─────────────────────────────────────────
 avg_price       = filt["price"].mean()
-total_products  = filt["product"].nunique()
+total_products  = filt["name"].nunique()
 total_obs       = len(filt)
 price_drops     = (filt["price_change_pct"] < -2).sum()
 avg_rating      = filt["rating"].mean()
@@ -252,7 +307,7 @@ if not alerts.empty:
     for _, row in alerts.iterrows():
         st.markdown(
             f'<div class="alert-banner">'
-            f'<b>{row["product"]}</b> on <b>{row["platform"]}</b> — '
+            f'<b>{row["name"]}</b> on <b>{row["site"]}</b> — '
             f'Price dropped to <b>{row["price"]:,.0f} MAD</b> '
             f'<span style="color:#f44336">({row["price_change_pct"]:+.1f}%)</span>'
             f'</div>',
@@ -269,7 +324,7 @@ col_l, col_r = st.columns([2, 1])
 with col_l:
     st.markdown("### Price Trends by Platform")
     daily_avg = (
-        filt.groupby(["date", "platform"])["price"]
+        filt.groupby(["date", "site"])["price"]
         .mean()
         .reset_index()
         .rename(columns={"price": "avg_price"})
@@ -278,7 +333,7 @@ with col_l:
         daily_avg,
         x="date",
         y="avg_price",
-        color="platform",
+        color="site",
         color_discrete_map={
             "Jumia": "#4fc3f7",
             "Glovo": "#ff9800",
@@ -328,13 +383,13 @@ col_l2, col_r2 = st.columns([1, 1])
 
 with col_l2:
     st.markdown("### Price Volatility by Category (std dev)")
-    vol = filt.groupby(["category", "platform"])["price"].std().reset_index()
-    vol.columns = ["category", "platform", "volatility"]
+    vol = filt.groupby(["category", "site"])["price"].std().reset_index()
+    vol.columns = ["category", "site", "volatility"]
     fig_vol = px.bar(
         vol,
         x="category",
         y="volatility",
-        color="platform",
+        color="site",
         barmode="group",
         color_discrete_map={
             "Jumia": "#4fc3f7",
@@ -358,16 +413,16 @@ with col_r2:
     st.markdown("### Platform Price Comparison (Box Plot)")
     fig_box = px.box(
         filt,
-        x="platform",
+        x="site",
         y="price",
-        color="platform",
+        color="site",
         color_discrete_map={
             "Jumia": "#4fc3f7",
             "Glovo": "#ff9800",
             "Amazon.ma": "#66bb6a",
         },
         template="plotly_dark",
-        labels={"price": "Price (MAD)", "platform": ""},
+        labels={"price": "Price (MAD)", "site": ""},
     )
     fig_box.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
@@ -389,12 +444,12 @@ tab1, tab2, tab3 = st.tabs(["📐 Descriptive Stats", "🧪 Hypothesis Tests", "
 
 with tab1:
     desc = (
-        filt.groupby(["category", "platform"])["price"]
+        filt.groupby(["category", "site"])["price"]
         .agg(["mean", "median", "std", "min", "max", "count"])
         .round(2)
         .reset_index()
     )
-    desc.columns = ["Category", "Platform", "Mean", "Median", "Std Dev", "Min", "Max", "N"]
+    desc.columns = ["Category", "site", "Mean", "Median", "Std Dev", "Min", "Max", "N"]
     st.dataframe(
         desc,
         use_container_width=True,
@@ -408,9 +463,9 @@ with tab2:
     )
     from scipy import stats as scipy_stats
 
-    jumia  = filt[filt["platform"] == "Jumia"]["price"].dropna()
-    amazon = filt[filt["platform"] == "Amazon.ma"]["price"].dropna()
-    glovo  = filt[filt["platform"] == "Glovo"]["price"].dropna()
+    jumia  = filt[filt["site"] == "Jumia"]["price"].dropna()
+    amazon = filt[filt["site"] == "Amazon.ma"]["price"].dropna()
+    glovo  = filt[filt["site"] == "Glovo"]["price"].dropna()
 
     t_stat, p_val = scipy_stats.ttest_ind(jumia, amazon, equal_var=False)
     f_stat, p_anova = scipy_stats.f_oneway(jumia, amazon, glovo)
@@ -437,8 +492,8 @@ with tab2:
     fig_vio = px.violin(
         filt,
         y="price",
-        x="platform",
-        color="platform",
+        x="site",
+        color="site",
         box=True,
         points=False,
         color_discrete_map={
@@ -558,7 +613,7 @@ with col_m:
     st.markdown("### 📉 Top Price Movers (Today)")
     today_filt = filt[filt["date"] == filt["date"].max()].copy()
     movers = (
-        today_filt.groupby(["product", "platform"])
+        today_filt.groupby(["name", "site"])
         .agg(price_change=("price_change_pct", "mean"), price=("price", "mean"))
         .reset_index()
         .sort_values("price_change")
@@ -570,10 +625,10 @@ with col_m:
     movers["price_change_str"] = movers["price_change"].apply(lambda x: f"{x:+.2f}%")
     movers["price_str"] = movers["price"].apply(lambda x: f"{x:,.0f} MAD")
     st.dataframe(
-        movers[["product", "platform", "price_str", "price_change_str", "direction"]]
+        movers[["name", "site", "price_str", "price_change_str", "direction"]]
         .rename(columns={
-            "product": "Product",
-            "platform": "Platform",
+            "name": "Product",
+            "site": "Platform",
             "price_str": "Price",
             "price_change_str": "Δ%",
             "direction": "",
@@ -618,13 +673,13 @@ with st.expander("🔍 Raw Data Explorer (dbt mart output)"):
     sample_df = filt.sort_values("timestamp", ascending=False)
     st.dataframe(
         sample_df[[
-            "timestamp", "product", "category", "platform",
+            "timestamp", "name", "category", "site",
             "price", "price_change_pct", "rating", "reviews", "in_stock"
         ]].rename(columns={
             "timestamp": "Timestamp",
-            "product": "Product",
+            "name": "Product",
             "category": "Category",
-            "platform": "Platform",
+            "site": "Platform",
             "price": "Price (MAD)",
             "price_change_pct": "Δ Price %",
             "rating": "Rating",
