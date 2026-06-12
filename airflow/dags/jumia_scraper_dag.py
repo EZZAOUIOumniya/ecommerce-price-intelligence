@@ -20,15 +20,15 @@ SITES = [
     'ultrapc',
 ]
 
-SCRAPY_BIN  = '/home/airflow/.local/bin/scrapy'
+SCRAPY_BIN = '/home/airflow/.local/bin/scrapy'
 PROJECT_DIR = '/opt/airflow/scrapers/market_bot'
-DATA_DIR    = '/opt/airflow/scrapers/market_bot/data'
+DATA_DIR = '/opt/airflow/scrapers/market_bot/data'
 
 with DAG(
     'market_intelligence_platform',
-    default_args = default_args,
+    default_args=default_args,
     description = 'High-Performance Parallel Scraping (Kafka Integration)',
-    schedule_interval = '0 3 * * *',
+    schedule_interval='0 3 * * *',
     start_date = datetime(2026, 4, 21),
     catchup = False,
     is_paused_upon_creation = True,
@@ -54,9 +54,9 @@ with DAG(
                 bash_command = cmd,
                 env = {
                     'KAFKA_BOOTSTRAP_SERVERS': 'kafka:29092',
-                    'KAFKA_TOPIC':             'market_data',
-                    'PYTHONPATH':              PROJECT_DIR,
-                    'SCRAPY_SETTINGS_MODULE':  'market_bot.settings',
+                    'KAFKA_TOPIC': 'market_data',
+                    'PYTHONPATH': PROJECT_DIR,
+                    'SCRAPY_SETTINGS_MODULE': 'market_bot.settings',
                     'PATH': '/home/airflow/.local/bin:/usr/local/bin:/usr/bin:/bin',
                     'HOME': '/home/airflow',
                 },
