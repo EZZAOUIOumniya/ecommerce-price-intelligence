@@ -67,7 +67,7 @@ def row_to_dict(row):
             return None
 
     return {
-        "row_key": row.row_key.decode("utf-8", errors= "replace"),
+        "row_key": row.row_key.decode("utf-8", errors="replace"),
         "price_cf_site": get_cell("price_cf", "site"),
         "price_cf_name": get_cell("price_cf", "name"),
         "price_cf_price": get_cell("price_cf", "price"),
