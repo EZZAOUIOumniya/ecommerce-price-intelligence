@@ -29,6 +29,8 @@ ecommerce-price-intelligence/
 ├── nifi/
 │   └── flows/
 │       └── price_ingestion_flow.json
+├── notebooks/
+│   ├── analyse_prix.ipynb   
 ├── scripts/
 │   ├── init_db.sql                  # Schéma PostgreSQL
 │   └── validate_data.py

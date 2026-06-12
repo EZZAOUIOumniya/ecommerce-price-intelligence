@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <property>
+    <name>google.bigtable.project.id</name>
+    <value>test-project</value>
+  </property>
+  <property>
+    <name>google.bigtable.instance.id</name>
+    <value>test-instance</value>
+  </property>
+  <property>
+    <name>google.bigtable.emulator.endpoint.host</name>
+    <value>bigtable-emulator:8086</value>
+  </property>
+  <property>
+    <name>hbase.client.connection.impl</name>
+    <value>com.google.cloud.bigtable.hbase2_x.BigtableConnection</value>
+  </property>
+</configuration>

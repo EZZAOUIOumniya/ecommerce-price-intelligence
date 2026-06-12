@@ -1,0 +1,23 @@
+FROM apache/nifi:2.0.0
+
+USER root
+
+# --- ÉTAPE 1 : INSTALLER PYTHON 3 & VENV ---
+# NiFi 2.0 a besoin de 'python3-venv' pour créer les environnements isolés des processeurs
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# --- ÉTAPE 2 : CONFIGURATION DES PERMISSIONS ---
+# On s'assure que NiFi peut écrire dans son dossier d'extensions Python
+RUN mkdir -p /opt/nifi/nifi-current/python_extensions && \
+    chown -R nifi:nifi /opt/nifi/nifi-current/python_extensions
+
+USER nifi
+
+# ✅ NOTE : Vous n'avez plus besoin de "pip install google-cloud-bigtable" ici.
+# Quand vous créerez votre processeur Python dans l'UI de NiFi, 
+# vous ajouterez simplement 'google-cloud-bigtable' dans la liste des dépendances
+# du processeur, et NiFi s'occupera de l'installation proprement.

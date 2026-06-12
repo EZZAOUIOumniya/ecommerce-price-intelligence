@@ -1,6 +1,7 @@
 version: 2
 
 sources:
+<<<<<<< HEAD
   - name: public
     database: price_db
     schema: public
@@ -23,3 +24,43 @@ models:
 
   - name: mart_price_by_site
     description: "Agrégats prix par site/source"
+=======
+  - name: bigtable_export
+    database: lyrical-lyceum-499123-c2
+    schema: price_intelligence
+    tables:
+      - name: price_history_raw
+        description: "Raw export from Bigtable"
+
+models:
+  - name: stg_prices
+    description: "Staged prices: types cast, columns renamed"
+    columns:
+      - name: row_key
+        tests:
+          - not_null
+          - unique
+      - name: price_raw
+        tests:
+          - not_null
+
+  - name: cleaned_prices
+    description: "Cleaned: bad prices removed, deduplicated"
+    columns:
+      - name: row_key
+        tests:
+          - not_null
+          - unique
+      - name: price
+        tests:
+          - not_null
+      - name: scraped_at
+        tests:
+          - not_null
+
+  - name: agg_daily_prices
+    description: "Daily price stats per product per site"
+
+  - name: agg_price_comparison
+    description: "Cross-site price comparison"
+>>>>>>> origin/data_engeering

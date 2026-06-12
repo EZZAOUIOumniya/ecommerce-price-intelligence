@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -238,3 +239,45 @@ override.tf.json
 
 # IMPORTANT
 .terraform.lock.hcl
+=======
+# Build artifacts
+*.duckdb
+target/
+logs/
+.dbt/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Airflow and Postgres
+airflow_logs/
+postgres_data/
+
+# NiFi runtime data
+nifi/
+nifi_data/
+data/
+
+# GCP credentials — NEVER commit
+secrets/
+*.json
+.env
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/.user.yml
+
+# Scrapy output
+scrapers/market_bot/data/
+*.jsonl
+debug_*
+test_*.json
+*_test.json
+
+# System
+.DS_Store
+*.log
+>>>>>>> origin/data_engeering
