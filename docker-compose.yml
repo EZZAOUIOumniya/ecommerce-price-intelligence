@@ -1,5 +1,8 @@
 services:
-  # --- 1. DATABASE (Airflow & dbt Backend) ---
+
+  # ─────────────────────────────────────────────
+  # 1. DATABASE  (Airflow metadata backend)
+  # ─────────────────────────────────────────────
   postgres:
     image: postgres:15
     container_name: postgres
@@ -14,7 +17,9 @@ services:
       interval: 5s
       retries: 5
 
-  # --- 2. MESSAGING (Kafka) ---
+  # ─────────────────────────────────────────────
+  # 2. MESSAGING  (Kafka + Zookeeper)
+  # ─────────────────────────────────────────────
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.0
     container_name: zookeeper
@@ -40,7 +45,6 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      # CORRECTION : On sépare les noms de listeners et les ports internes
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
@@ -62,43 +66,45 @@ services:
       - "8090:8080"
     environment:
       KAFKA_CLUSTERS_0_NAME: local
-      # Utilise le listener interne
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
     networks:
       - data-tier
 
-  # --- 3. STORAGE (Bigtable Emulator) ---
-  bigtable:
-    image: google/cloud-sdk:latest
-    container_name: bigtable
-    ports:
-      - "8086:8086"
-    networks:
-      - data-tier
-    command: gcloud beta emulators bigtable start --host-port=0.0.0.0:8086
-    healthcheck:
-      test: ["CMD-SHELL", "timeout 1 bash -c '</dev/tcp/localhost/8086' || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
-
+  # ─────────────────────────────────────────────
+  # 3. STORAGE INIT  (Real GCP Bigtable via ADC)
+  #    Runs ONCE, then exits cleanly.
+  #    All other services wait for it via
+  #    condition: service_completed_successfully
+  # ─────────────────────────────────────────────
   bigtable-init:
     image: google/cloud-sdk:latest
     container_name: bigtable-init
-    depends_on:
-      bigtable:
-        condition: service_healthy
+    restart: "no"                          # ← never restart; it is a one-shot init job
     networks:
       - data-tier
     environment:
-      - BIGTABLE_EMULATOR_HOST=bigtable:8086
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - BIGTABLE_INSTANCE_ID=${BIGTABLE_INSTANCE_ID}
+      # Application Default Credentials via mounted gcloud config
+      - CLOUDSDK_CONFIG=/root/.config/gcloud
+    volumes:
+      # FIX: use ${HOME} so Docker expands it correctly on all platforms
+      - ${HOME}/.config/gcloud:/root/.config/gcloud
     command: >
-      bash -c "sleep 10 && 
-               cbt -project=test-project -instance=test-instance createtable price_history || true &&
-               cbt -project=test-project -instance=test-instance createfamily price_history price_cf || true"
+      bash -c "
+        echo '🔍 Checking GCP auth...' &&
+        gcloud auth list --filter=status:ACTIVE --format='value(account)' | grep -q '@' || {
+          echo '❌ No active GCP account found. Run: gcloud auth login' && exit 1;
+        } &&
+        echo '✅ Auth OK' &&
+        cbt -project=${GCP_PROJECT_ID} -instance=${BIGTABLE_INSTANCE_ID} createtable price_history || true &&
+        cbt -project=${GCP_PROJECT_ID} -instance=${BIGTABLE_INSTANCE_ID} createfamily price_history price_cf || true &&
+        echo '✅ Bigtable table and column family ready.'
+      "
 
-  # --- 4. ORCHESTRATION (Airflow) ---
+  # ─────────────────────────────────────────────
+  # 4. ORCHESTRATION  (Airflow)
+  # ─────────────────────────────────────────────
   airflow-common: &airflow-common
     build: .
     networks:
@@ -108,36 +114,60 @@ services:
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
       - AIRFLOW__CORE__PARALLELISM=32
-      # CORRECTION : Airflow utilise le port de communication interne
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
-      - BIGTABLE_EMULATOR_HOST=bigtable:8086
+      # GCP — read from .env file
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - BIGTABLE_INSTANCE_ID=${BIGTABLE_INSTANCE_ID}
+      - CLOUDSDK_CONFIG=/root/.config/gcloud
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./scrapers:/opt/airflow/scrapers
       - ./airflow_logs:/opt/airflow/logs
       - ./scripts:/opt/airflow/scripts
+      # FIX: use ${HOME} so Docker expands it correctly on all platforms
+      - ${HOME}/.config/gcloud:/root/.config/gcloud
+    # FIX: use AIRFLOW_UID from .env instead of hardcoded root (0:0)
+    # root breaks Airflow's internal permission model
     user: "${AIRFLOW_UID:-1000}:0"
 
   airflow-webserver:
     <<: *airflow-common
     container_name: airflow-webserver
-    command: bash -c "airflow db migrate && airflow users create --username admin --firstname admin --lastname admin --role Admin --email admin@example.com --password admin && airflow webserver"
+    command: >
+      bash -c "
+        airflow db migrate &&
+        airflow users create \
+          --username admin \
+          --firstname admin \
+          --lastname admin \
+          --role Admin \
+          --email admin@example.com \
+          --password admin || true &&
+        airflow webserver
+      "
     ports:
       - "8080:8080"
     depends_on:
-      postgres: { condition: service_healthy }
-      bigtable: { condition: service_healthy }
+      postgres:
+        condition: service_healthy
+      bigtable-init:
+        condition: service_completed_successfully   # ← waits for init to finish OK
 
   airflow-scheduler:
     <<: *airflow-common
     container_name: airflow-scheduler
     command: bash -c "airflow db migrate && airflow scheduler"
     depends_on:
-      postgres: { condition: service_healthy }
-      kafka: { condition: service_healthy }
-      bigtable: { condition: service_healthy }
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      bigtable-init:
+        condition: service_completed_successfully   # ← waits for init to finish OK
 
-  # --- 5. INGESTION (NiFi 2.x) ---
+  # ─────────────────────────────────────────────
+  # 5. INGESTION  (NiFi 2.x)
+  # ─────────────────────────────────────────────
   nifi:
     image: apache/nifi:2.0.0
     container_name: nifi
@@ -147,7 +177,9 @@ services:
       - NIFI_WEB_HTTPS_PORT=8443
       - SINGLE_USER_CREDENTIALS_USERNAME=admin
       - SINGLE_USER_CREDENTIALS_PASSWORD=DataEngineering2026!
-      - BIGTABLE_EMULATOR_HOST=bigtable:8086
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+      - BIGTABLE_INSTANCE_ID=${BIGTABLE_INSTANCE_ID}
+      - CLOUDSDK_CONFIG=/root/.config/gcloud
       - NIFI_JVM_HEAP_INIT=8g
       - NIFI_JVM_HEAP_MAX=24g
     volumes:
@@ -155,15 +187,16 @@ services:
       - ./nifi/python_extensions:/opt/nifi/nifi-current/python_extensions
       - ./scripts:/opt/nifi/nifi-current/scripts
       - ./data:/opt/nifi/nifi-current/data
-      # - ./nifi/conf:/opt/nifi/nifi-current/conf
+      # FIX: use ${HOME} so Docker expands it correctly on all platforms
+      - ${HOME}/.config/gcloud:/root/.config/gcloud
     networks:
       - data-tier
     mem_limit: 32g
     depends_on:
       kafka:
         condition: service_healthy
-      bigtable:
-        condition: service_healthy
+      bigtable-init:
+        condition: service_completed_successfully   # ← waits for init to finish OK
 
 networks:
   data-tier:

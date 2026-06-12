@@ -1,1 +1,0 @@
-{"id":"error_84ae697c9b","site":"uno","category":"moniteur","name":null,"price":null,"in_stock":null,"brand":"N/A","url":"https://uno.ma/ecrans-maroc","scraped_at":"2026-05-04T03:58:10Z","error":"<twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>","source":"uno"}

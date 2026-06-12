@@ -1,1 +1,0 @@
-{"id":"error_d52577a635","site":"micromagma","category":"laptop","name":null,"price":null,"in_stock":null,"brand":"N/A","url":"https://www.micromagma.ma/13-ordinateurs-portables","scraped_at":"2026-05-03T23:12:28Z","error":"<twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>","source":"micromagma"}

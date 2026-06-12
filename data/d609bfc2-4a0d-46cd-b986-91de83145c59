@@ -1,1 +1,0 @@
-{"id":"error_https://www.iris.ma/266-tablette","site":"iris","category":"tablet","name":null,"price":null,"in_stock":null,"url":"https://www.iris.ma/266-tablette","scraped_at":"2026-05-02T19:16:53Z","error":"<twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>","source":"iris","brand":"N/A"}

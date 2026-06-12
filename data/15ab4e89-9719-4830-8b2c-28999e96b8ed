@@ -1,1 +1,0 @@
-{"id":"error_9037cb76fe","site":"iris","category":"moniteur","name":null,"price":null,"in_stock":null,"url":"https://www.iris.ma/55-ecran-moniteur","scraped_at":"2026-05-02T19:48:09Z","error":"<twisted.python.failure.Failure playwright._impl._errors.Error: BrowserContext.new_page: Protocol error (Target.createTarget): Not supported>","source":"iris","brand":"N/A"}

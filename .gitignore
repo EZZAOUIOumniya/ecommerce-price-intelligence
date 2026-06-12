@@ -1,10 +1,40 @@
-# Ignore build artifacts and database
+# Build artifacts
 *.duckdb
 target/
 logs/
 .dbt/
 venv/
 __pycache__/
-# Ignore Airflow and Postgres data
+*.pyc
+*.pyo
+.venv/
+
+# Airflow and Postgres
 airflow_logs/
 postgres_data/
+
+# NiFi runtime data
+nifi/
+nifi_data/
+data/
+
+# GCP credentials — NEVER commit
+secrets/
+*.json
+.env
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/.user.yml
+
+# Scrapy output
+scrapers/market_bot/data/
+*.jsonl
+debug_*
+test_*.json
+*_test.json
+
+# System
+.DS_Store
+*.log

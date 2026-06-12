@@ -1,1 +1,0 @@
-{"id":"error_f03496a532","site":"micromagma","category":"moniteur","name":null,"price":null,"in_stock":null,"brand":"N/A","url":"https://www.micromagma.ma/18-ecrans","scraped_at":"2026-05-03T22:37:44Z","error":"<twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>","source":"micromagma"}

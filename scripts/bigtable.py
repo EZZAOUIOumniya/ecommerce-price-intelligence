@@ -7,10 +7,14 @@ import re
 from google.cloud import bigtable
 
 warnings.filterwarnings("ignore", category=FutureWarning)
-os.environ["BIGTABLE_EMULATOR_HOST"] = "bigtable:8086"
 
-BATCH_SIZE  = 200   # Bigtable emulator safe batch limit
-MAX_RETRIES = 3     # Retry attempts on batch failure
+# ✅ REMOVED: os.environ["BIGTABLE_EMULATOR_HOST"] = "bigtable:8086"
+# ✅ Read real GCP values from environment (set in docker-compose via .env)
+PROJECT_ID  = os.environ.get("GCP_PROJECT_ID",      "lyrical-lyceum-499123-c2")
+INSTANCE_ID = os.environ.get("BIGTABLE_INSTANCE_ID", "price-intel")
+
+BATCH_SIZE  = 500  # ✅ Real Bigtable supports larger batches (was 200 for emulator)
+MAX_RETRIES = 3
 
 
 # ------------------------------------------------------------------ #
@@ -38,29 +42,19 @@ def clean_price_value(value) -> str:
 
     price_str = str(value).strip()
 
-    # Supprimer la virgule et le point utilisés comme séparateurs de milliers
-    # puis prendre uniquement la partie entière avant le séparateur décimal
-    # Stratégie : si ',' et '.' présents, le dernier est le décimal
     if ',' in price_str and '.' in price_str:
         if price_str.rindex(',') > price_str.rindex('.'):
-            # Format européen : 5.899,00 → remplacer point et virgule
             price_str = price_str.replace('.', '').replace(',', '.')
         else:
-            # Format anglais : 5,899.00 → supprimer virgule
             price_str = price_str.replace(',', '')
     elif ',' in price_str:
         parts = price_str.split(',')
         if len(parts) == 2 and len(parts[1]) <= 2:
-            # Décimal : 5899,00 → 5899.00
             price_str = price_str.replace(',', '.')
         else:
-            # Milliers : 5,899 → 5899
             price_str = price_str.replace(',', '')
 
-    # Prendre la partie entière
     price_str = price_str.split('.')[0]
-
-    # Garder uniquement les chiffres
     digits = re.sub(r'[^\d]', '', price_str)
 
     return digits if digits else "0"
@@ -93,7 +87,8 @@ def get_source(item) -> str:
 # ------------------------------------------------------------------ #
 
 def build_row(table, item, source):
-    item_id    = re.sub(r"[^a-z0-9_-]", "_", str(item.get('id', 'unknown')))
+    # ✅ supports both 'product_id' (your data) and 'id' (generic)
+    item_id    = re.sub(r"[^a-z0-9_-]", "_", str(item.get('product_id') or item.get('id', 'unknown')))
     raw_date   = str(item.get('scraped_at', '0000'))
     scraped_at = raw_date.replace(" ", "T").replace(":", "-")
 
@@ -157,8 +152,10 @@ def run():
         data_json = json.loads(raw_input)
         items = data_json if isinstance(data_json, list) else [data_json]
 
-        client   = bigtable.Client(project='test-project', admin=True)
-        instance = client.instance('test-instance')
+        # ✅ FIXED: use real PROJECT_ID and INSTANCE_ID from environment
+        # ✅ REMOVED: admin=True (not needed for writes, reduces required permissions)
+        client   = bigtable.Client(project=PROJECT_ID)
+        instance = client.instance(INSTANCE_ID)
         table    = instance.table('price_history')
 
         rows = [build_row(table, item, get_source(item)) for item in items]
@@ -176,14 +173,15 @@ def run():
         total   = len(rows)
         written = total - failed
 
-        # Log throughput pour monitoring NiFi
-        sys.stderr.write(f"✅ {written}/{total} rows written to Bigtable.\n")
+        sys.stderr.write(f"✅ {written}/{total} rows written to Bigtable"
+                         f" (project={PROJECT_ID}, instance={INSTANCE_ID}).\n")
 
-        # Summary JSON → stdout pour NiFi
         summary = json.dumps({
-            "written": written,
-            "failed":  failed,
-            "total":   total,
+            "written":  written,
+            "failed":   failed,
+            "total":    total,
+            "project":  PROJECT_ID,
+            "instance": INSTANCE_ID,
         })
         sys.stdout.write(summary)
 
