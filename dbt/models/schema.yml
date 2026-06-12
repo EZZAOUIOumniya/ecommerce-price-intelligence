@@ -1,12 +1,18 @@
 version: 2
 
 sources:
-<<<<<<< HEAD
   - name: public
     database: price_db
     schema: public
     tables:
       - name: products
+
+  - name: bigtable_export
+    database: lyrical-lyceum-499123-c2
+    schema: price_intelligence
+    tables:
+      - name: price_history_raw
+        description: "Raw export from Bigtable"
 
 models:
   - name: stg_products
@@ -24,15 +30,7 @@ models:
 
   - name: mart_price_by_site
     description: "Agrégats prix par site/source"
-=======
-  - name: bigtable_export
-    database: lyrical-lyceum-499123-c2
-    schema: price_intelligence
-    tables:
-      - name: price_history_raw
-        description: "Raw export from Bigtable"
 
-models:
   - name: stg_prices
     description: "Staged prices: types cast, columns renamed"
     columns:
@@ -63,4 +61,3 @@ models:
 
   - name: agg_price_comparison
     description: "Cross-site price comparison"
->>>>>>> origin/data_engeering
