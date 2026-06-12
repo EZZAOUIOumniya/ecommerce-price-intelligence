@@ -6,7 +6,7 @@ import warnings
 import re
 from google.cloud import bigtable
 
-warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category = FutureWarning)
 
 # ✅ REMOVED: os.environ["BIGTABLE_EMULATOR_HOST"] = "bigtable:8086"
 # ✅ Read real GCP values from environment (set in docker-compose via .env)
@@ -95,12 +95,12 @@ def build_row(table, item, source):
     row_key = f"{source}#{item_id}#{scraped_at}".encode()
     row = table.direct_row(row_key)
 
-    row.set_cell('price_cf', b'site',       source.encode())
-    row.set_cell('price_cf', b'name',       str(item.get('name',     'N/A')).encode())
-    row.set_cell('price_cf', b'price',      clean_price_value(item.get('price')).encode())
-    row.set_cell('price_cf', b'brand',      str(item.get('brand',    'Inconnue')).encode())
-    row.set_cell('price_cf', b'category',   str(item.get('category', 'N/A')).encode())
-    row.set_cell('price_cf', b'url',        str(item.get('url',      '')).lower().encode())
+    row.set_cell('price_cf', b'site', source.encode())
+    row.set_cell('price_cf', b'name', str(item.get('name', 'N/A')).encode())
+    row.set_cell('price_cf', b'price', clean_price_value(item.get('price')).encode())
+    row.set_cell('price_cf', b'brand', str(item.get('brand', 'Inconnue')).encode())
+    row.set_cell('price_cf', b'category', str(item.get('category', 'N/A')).encode())
+    row.set_cell('price_cf', b'url', str(item.get('url', '')).lower().encode())
     row.set_cell('price_cf', b'scraped_at', raw_date.encode())
 
     return row
@@ -115,7 +115,7 @@ def chunked(lst, size):
         yield lst[i:i + size]
 
 
-def mutate_with_retry(table, batch, max_retries=MAX_RETRIES):
+def mutate_with_retry(table, batch, max_retries = MAX_RETRIES):
     """Envoie un batch avec retry + exponential backoff."""
     for attempt in range(max_retries):
         try:
@@ -174,7 +174,7 @@ def run():
         written = total - failed
 
         sys.stderr.write(f"✅ {written}/{total} rows written to Bigtable"
-                         f" (project={PROJECT_ID}, instance={INSTANCE_ID}).\n")
+                         f" (project={PROJECT_ID}, instance = {INSTANCE_ID}).\n")
 
         summary = json.dumps({
             "written":  written,

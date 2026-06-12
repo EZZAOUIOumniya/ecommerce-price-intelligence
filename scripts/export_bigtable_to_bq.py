@@ -19,14 +19,14 @@ BATCH_SIZE   = 1000  # rows per BigQuery insert
 # ------------------------------------------------------------------ #
 
 SCHEMA = [
-    bigquery.SchemaField("row_key",            "STRING",    mode="REQUIRED"),
-    bigquery.SchemaField("price_cf_site",      "STRING",    mode="NULLABLE"),
-    bigquery.SchemaField("price_cf_name",      "STRING",    mode="NULLABLE"),
-    bigquery.SchemaField("price_cf_price",     "STRING",    mode="NULLABLE"),
-    bigquery.SchemaField("price_cf_brand",     "STRING",    mode="NULLABLE"),
-    bigquery.SchemaField("price_cf_category",  "STRING",    mode="NULLABLE"),
-    bigquery.SchemaField("price_cf_url",       "STRING",    mode="NULLABLE"),
-    bigquery.SchemaField("price_cf_scraped_at","STRING",    mode="NULLABLE"),
+    bigquery.SchemaField("row_key", "STRING", mode = "REQUIRED"),
+    bigquery.SchemaField("price_cf_site", "STRING", mode = "NULLABLE"),
+    bigquery.SchemaField("price_cf_name", "STRING", mode = "NULLABLE"),
+    bigquery.SchemaField("price_cf_price", "STRING", mode = "NULLABLE"),
+    bigquery.SchemaField("price_cf_brand", "STRING", mode = "NULLABLE"),
+    bigquery.SchemaField("price_cf_category", "STRING", mode = "NULLABLE"),
+    bigquery.SchemaField("price_cf_url", "STRING", mode = "NULLABLE"),
+    bigquery.SchemaField("price_cf_scraped_at", "STRING", mode = "NULLABLE"),
 ]
 
 # ------------------------------------------------------------------ #
@@ -48,8 +48,8 @@ def get_or_create_bq_table(bq_client):
 
     # Create table if not exists (truncate if exists)
     table_ref = f"{PROJECT_ID}.{DATASET_ID}.{TABLE_ID}"
-    table = bigquery.Table(table_ref, schema=SCHEMA)
-    bq_client.delete_table(table_ref, not_found_ok=True)
+    table = bigquery.Table(table_ref, schema = SCHEMA)
+    bq_client.delete_table(table_ref, not_found_ok = True)
     bq_client.create_table(table)
     print(f"✅ Table {TABLE_ID} created (fresh).")
     return table_ref
@@ -62,18 +62,18 @@ def get_or_create_bq_table(bq_client):
 def row_to_dict(row):
     def get_cell(family, column):
         try:
-            return row.cells[family][column.encode()][0].value.decode("utf-8", errors="replace")
+            return row.cells[family][column.encode()][0].value.decode("utf-8", errors = "replace")
         except (KeyError, IndexError):
             return None
 
     return {
-        "row_key":             row.row_key.decode("utf-8", errors="replace"),
-        "price_cf_site":       get_cell("price_cf", "site"),
-        "price_cf_name":       get_cell("price_cf", "name"),
-        "price_cf_price":      get_cell("price_cf", "price"),
-        "price_cf_brand":      get_cell("price_cf", "brand"),
-        "price_cf_category":   get_cell("price_cf", "category"),
-        "price_cf_url":        get_cell("price_cf", "url"),
+        "row_key": row.row_key.decode("utf-8", errors = "replace"),
+        "price_cf_site": get_cell("price_cf", "site"),
+        "price_cf_name": get_cell("price_cf", "name"),
+        "price_cf_price": get_cell("price_cf", "price"),
+        "price_cf_brand": get_cell("price_cf", "brand"),
+        "price_cf_category": get_cell("price_cf", "category"),
+        "price_cf_url": get_cell("price_cf", "url"),
         "price_cf_scraped_at": get_cell("price_cf", "scraped_at"),
     }
 
@@ -84,18 +84,18 @@ def row_to_dict(row):
 
 def main():
     print(f"🔗 Connecting to Bigtable: {PROJECT_ID} / {INSTANCE_ID}")
-    bt_client  = bigtable.Client(project=PROJECT_ID, admin=False)
-    instance   = bt_client.instance(INSTANCE_ID)
-    table      = instance.table("price_history")
+    bt_client = bigtable.Client(project = PROJECT_ID, admin = False)
+    instance = bt_client.instance(INSTANCE_ID)
+    table = instance.table("price_history")
 
     print(f"🔗 Connecting to BigQuery: {PROJECT_ID} / {DATASET_ID}")
-    bq_client  = bigquery.Client(project=PROJECT_ID)
-    table_ref  = get_or_create_bq_table(bq_client)
+    bq_client = bigquery.Client(project = PROJECT_ID)
+    table_ref = get_or_create_bq_table(bq_client)
 
     print("📖 Reading rows from Bigtable...")
-    rows_read    = 0
+    rows_read = 0
     rows_written = 0
-    batch        = []
+    batch = []
     errors_total = []
 
     for row in table.read_rows():
@@ -125,7 +125,7 @@ def main():
     if errors_total:
         print(f"⚠️  Total insert errors: {len(errors_total)}")
         for e in errors_total[:5]:
-            print(f"   {e}")
+            print(f"{e}")
 
 
 if __name__ == "__main__":
