@@ -6,14 +6,14 @@ import warnings
 import re
 from google.cloud import bigtable
 
-warnings.filterwarnings("ignore", category = FutureWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 # ✅ REMOVED: os.environ["BIGTABLE_EMULATOR_HOST"] = "bigtable:8086"
 # ✅ Read real GCP values from environment (set in docker-compose via .env)
-PROJECT_ID  = os.environ.get("GCP_PROJECT_ID",      "lyrical-lyceum-499123-c2")
+PROJECT_ID = os.environ.get("GCP_PROJECT_ID",      "lyrical-lyceum-499123-c2")
 INSTANCE_ID = os.environ.get("BIGTABLE_INSTANCE_ID", "price-intel")
 
-BATCH_SIZE  = 500  # ✅ Real Bigtable supports larger batches (was 200 for emulator)
+BATCH_SIZE = 500  # ✅ Real Bigtable supports larger batches (was 200 for emulator)
 MAX_RETRIES = 3
 
 
@@ -115,7 +115,7 @@ def chunked(lst, size):
         yield lst[i:i + size]
 
 
-def mutate_with_retry(table, batch, max_retries = MAX_RETRIES):
+def mutate_with_retry(table, batch, max_retries=MAX_RETRIES):
     """Envoie un batch avec retry + exponential backoff."""
     for attempt in range(max_retries):
         try:
@@ -154,9 +154,9 @@ def run():
 
         # ✅ FIXED: use real PROJECT_ID and INSTANCE_ID from environment
         # ✅ REMOVED: admin=True (not needed for writes, reduces required permissions)
-        client   = bigtable.Client(project=PROJECT_ID)
+        client = bigtable.Client(project=PROJECT_ID)
         instance = client.instance(INSTANCE_ID)
-        table    = instance.table('price_history')
+        table = instance.table('price_history')
 
         rows = [build_row(table, item, get_source(item)) for item in items]
 
@@ -177,10 +177,10 @@ def run():
                          f" (project={PROJECT_ID}, instance = {INSTANCE_ID}).\n")
 
         summary = json.dumps({
-            "written":  written,
-            "failed":   failed,
-            "total":    total,
-            "project":  PROJECT_ID,
+            "written": written,
+            "failed": failed,
+            "total": total,
+            "project": PROJECT_ID,
             "instance": INSTANCE_ID,
         })
         sys.stdout.write(summary)

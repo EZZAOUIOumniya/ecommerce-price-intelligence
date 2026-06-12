@@ -27,12 +27,12 @@ DATA_DIR = '/opt/airflow/scrapers/market_bot/data'
 with DAG(
     'market_intelligence_platform',
     default_args=default_args,
-    description = 'High-Performance Parallel Scraping (Kafka Integration)',
+    description='High-Performance Parallel Scraping (Kafka Integration)',
     schedule_interval='0 3 * * *',
-    start_date = datetime(2026, 4, 21),
-    catchup = False,
-    is_paused_upon_creation = True,
-    tags = ['high_performance', 'scraping', 'kafka'],
+    start_date=datetime(2026, 4, 21),
+    catchup=False,
+    is_paused_upon_creation=True,
+    tags=['high_performance', 'scraping', 'kafka'],
 ) as dag:
 
     with TaskGroup("parallel_scraping") as scraping_group:
@@ -50,9 +50,9 @@ with DAG(
             )
 
             BashOperator(
-                task_id = f'scrape_{site}',
-                bash_command = cmd,
-                env = {
+                task_id=f'scrape_{site}',
+                bash_command=cmd,
+                env={
                     'KAFKA_BOOTSTRAP_SERVERS': 'kafka:29092',
                     'KAFKA_TOPIC': 'market_data',
                     'PYTHONPATH': PROJECT_DIR,
@@ -60,9 +60,9 @@ with DAG(
                     'PATH': '/home/airflow/.local/bin:/usr/local/bin:/usr/bin:/bin',
                     'HOME': '/home/airflow',
                 },
-                append_env = True,
-                execution_timeout = timedelta(hours = 2),
-                do_xcom_push = True,
+                append_env=True,
+                execution_timeout=timedelta(hours = 2),
+                do_xcom_push=True,
             )
 
     scraping_group
