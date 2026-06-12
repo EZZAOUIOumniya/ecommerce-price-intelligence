@@ -1,6 +1,11 @@
 <div align="center">
 
-# 📊 E-Commerce Price Intelligence Platform
+# 🛒 E-commerce Price Intelligence Platform
+
+> 🎥 **[Voir la vidéo de démonstration (7 min)](https://drive.google.com/file/d/10yawaOQKosvffT9rtsFCoWk2xBi9l5CV/view?usp=sharing)**
+
+> Hybrid Batch + Streaming Data Pipeline — Real-Time Price Monitoring & Analytics()
+
 
 **A full-stack data engineering solution for real-time price monitoring and analysis across Moroccan e-commerce platforms.**
 
