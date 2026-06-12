@@ -1,9 +1,3 @@
-"""
-Real-Time E-commerce Price Intelligence Platform
-Fullstack Dashboard — Streamlit + Plotly
-Pr. ELAACHAK — Data Engineering & Analytics Project
-"""
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -109,74 +103,19 @@ st.markdown("""
 # ─────────────────────────────────────────
 @st.cache_data(ttl=60)
 def load_price_data():
-    """Simulates data exported from BigTable via dbt pipeline."""
-    np.random.seed(42)
-    categories = ["Smartphones", "Laptops", "Audio", "Cameras", "Tablets"]
-    platforms  = ["Jumia", "Glovo", "Amazon.ma"]
-    products = {
-        "Smartphones": [
-            "Samsung Galaxy S24", "iPhone 15 Pro", "Xiaomi 14", "Redmi Note 13",
-            "OPPO Reno 11", "Tecno Camon 20",
-        ],
-        "Laptops": [
-            "HP Pavilion 15", "Dell Inspiron 15", "Lenovo IdeaPad 5",
-            "ASUS VivoBook 15", "Acer Aspire 5",
-        ],
-        "Audio": [
-            "Sony WH-1000XM5", "JBL Tune 510BT", "Bose QC45",
-            "Samsung Galaxy Buds2", "Xiaomi Buds 4 Pro",
-        ],
-        "Cameras": [
-            "Canon EOS R50", "Sony ZV-E10", "Nikon Z30", "Fujifilm X-S20",
-        ],
-        "Tablets": [
-            "iPad Air (M2)", "Samsung Galaxy Tab S9", "Lenovo Tab P12",
-            "Xiaomi Pad 6 Pro",
-        ],
-    }
+    df = pd.read_csv("data/cleaned_data.csv")
 
-    base_prices = {
-        "Samsung Galaxy S24": 8500, "iPhone 15 Pro": 14500, "Xiaomi 14": 7200,
-        "Redmi Note 13": 2800, "OPPO Reno 11": 4200, "Tecno Camon 20": 2100,
-        "HP Pavilion 15": 5500, "Dell Inspiron 15": 6200, "Lenovo IdeaPad 5": 5800,
-        "ASUS VivoBook 15": 5100, "Acer Aspire 5": 4900,
-        "Sony WH-1000XM5": 3200, "JBL Tune 510BT": 550, "Bose QC45": 2800,
-        "Samsung Galaxy Buds2": 900, "Xiaomi Buds 4 Pro": 600,
-        "Canon EOS R50": 7800, "Sony ZV-E10": 6500, "Nikon Z30": 7200,
-        "Fujifilm X-S20": 8900,
-        "iPad Air (M2)": 9200, "Samsung Galaxy Tab S9": 8400,
-        "Lenovo Tab P12": 3100, "Xiaomi Pad 6 Pro": 3500,
-    }
+    # normalisation pour ton dashboard
+    df = df.rename(columns={
+        "scraped_date": "date",
+        "scraped_at": "timestamp",
+        "site": "platform"
+    })
 
-    records = []
-    now = datetime.now()
-    for cat, prods in products.items():
-        for prod in prods:
-            for plat in platforms:
-                for day in range(30):
-                    base   = base_prices.get(prod, 5000) * (
-                        1 + random.uniform(-0.08, 0.08)
-                    )
-                    ts = now - timedelta(days=29 - day)
-                    price  = base * (1 + np.random.normal(0, 0.012))
-                    rating = round(np.clip(np.random.normal(4.1, 0.5), 1, 5), 1)
-                    reviews = int(np.clip(np.random.normal(450, 300), 10, 3000))
-                    records.append({
-                        "timestamp": ts,
-                        "date": ts.date(),
-                        "product": prod,
-                        "category": cat,
-                        "platform": plat,
-                        "price": round(price, 2),
-                        "rating": rating,
-                        "reviews": reviews,
-                        "currency": "MAD",
-                        "in_stock": random.random() > 0.1,
-                    })
+    df["date"] = pd.to_datetime(df["date"]).dt.date
+    df["price_change_pct"] = df.groupby(["name", "platform"])["price"].pct_change() * 100
+    df["price_change_pct"] = df["price_change_pct"].fillna(0)
 
-    df = pd.DataFrame(records)
-    df["price_change_pct"] = df.groupby(["product", "platform"])["price"].pct_change() * 100
-    df["price_change_pct"] = df["price_change_pct"].fillna(0).round(2)
     return df
 
 
@@ -457,7 +396,7 @@ with tab1:
     )
     desc.columns = ["Category", "Platform", "Mean", "Median", "Std Dev", "Min", "Max", "N"]
     st.dataframe(
-        desc.style.background_gradient(subset=["Mean"], cmap="Blues"),
+        desc,
         use_container_width=True,
         hide_index=True,
     )
@@ -676,7 +615,7 @@ for col, (icon, label, status) in zip([p1, p2, p3, p4, p5, p6, p7], pipeline_ste
 # ─────────────────────────────────────────
 st.markdown("---")
 with st.expander("🔍 Raw Data Explorer (dbt mart output)"):
-    sample_df = filt.sort_values("timestamp", ascending=False).head(500)
+    sample_df = filt.sort_values("timestamp", ascending=False)
     st.dataframe(
         sample_df[[
             "timestamp", "product", "category", "platform",
