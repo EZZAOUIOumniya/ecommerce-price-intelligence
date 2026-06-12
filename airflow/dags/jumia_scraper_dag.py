@@ -31,6 +31,7 @@ with DAG(
     schedule_interval='0 3 * * *',
     start_date=datetime(2026, 4, 21),
     catchup=False,
+    is_paused_upon_creation=True,
     tags=['high_performance', 'scraping', 'kafka'],
 ) as dag:
 

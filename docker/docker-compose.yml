@@ -16,7 +16,7 @@ x-airflow-common: &airflow-common
     - ../airflow/dags:/opt/airflow/dags
     - ../data:/app/data
     - airflow_logs:/opt/airflow/logs
-    - ${APPDATA}/gcloud:/opt/airflow/gcp
+    - ${APPDATA}\gcloud:/opt/airflow/gcp
   networks:
     - price-network
   depends_on:
